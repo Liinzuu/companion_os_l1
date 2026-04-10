@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block title %}Sign in — Companion OS{% endblock %}
+
+{% block content %}
+<div class="min-vh-100 d-flex align-items-center justify-content-center px-3">
+    <div class="card w-100" style="max-width: 400px; box-shadow: 0 2px 16px rgba(44,36,22,0.07);">
+        <div class="card-body p-4">
+
+            <h1 class="h4 mb-1 text-center fw-semibold">Welcome back</h1>
+            <p class="text-center text-muted small mb-4">Sign in to Companion OS</p>
+
+            <form method="post" novalidate>
+                {% csrf_token %}
+
+                {% for field in form %}
+                <div class="mb-3">
+                    <label for="{{ field.id_for_label }}" class="form-label small fw-medium">
+                        {{ field.label }}
+                    </label>
+                    <input
+                        type="{{ field.field.widget.input_type }}"
+                        name="{{ field.html_name }}"
+                        id="{{ field.id_for_label }}"
+                        class="form-control {% if field.errors %}is-invalid{% endif %}"
+                        {% if field.value %}value="{{ field.value }}"{% endif %}
+                        autocomplete="{{ field.html_name }}"
+                    >
+                    {% if field.errors %}
+                        {% for error in field.errors %}
+                        <div class="invalid-feedback">{{ error }}</div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                {% endfor %}
+
+                {% if form.non_field_errors %}
+                <div class="alert alert-danger py-2 small">
+                    {% for error in form.non_field_errors %}
+                        {{ error }}
+                    {% endfor %}
+                </div>
+                {% endif %}
+
+                <div class="d-grid mt-4">
+                    <button type="submit" class="btn btn-primary-warm w-100">Sign in</button>
+                </div>
+            </form>
+
+            <hr class="my-4">
+
+            <p class="text-center mb-0 small text-muted">
+                No account yet?
+                <a href="{% url 'accounts:register' %}" class="text-dark fw-medium">Create one</a>
+            </p>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

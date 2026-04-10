@@ -1,3 +1,42 @@
-# accounts/views.py
-# Login, logout, registration views go here.
-# Empty for now — scaffold only.
+"""
+Accounts app — Views.
+
+Why class-based views (CBV) instead of function-based views (FBV)?
+For register, either would work. We use CBV here to stay consistent
+with Django's built-in auth views (LoginView, LogoutView) and because
+CBVs are easier to extend later (e.g. adding OAuth on top).
+"""
+from django.contrib.auth import login
+from django.shortcuts import redirect, render
+from django.views import View
+
+from .forms import RegisterForm
+
+
+class RegisterView(View):
+    """
+    Handles GET and POST for the registration page.
+
+    GET  → show empty form
+    POST → validate form, create user, log them in, redirect to home
+    """
+
+    template_name = "accounts/register.html"
+
+    def get(self, request):
+        # If already logged in, no point showing register page
+        if request.user.is_authenticated:
+            return redirect("home")
+        form = RegisterForm()
+        return render(request, self.template_name, {"form": form})
+
+    def post(self, request):
+        form = RegisterForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            # Log the user in immediately after registering
+            # so they don't have to log in again right away
+            login(request, user)
+            return redirect("home")
+        # Form invalid — re-render with error messages attached to the form
+        return render(request, self.template_name, {"form": form})
