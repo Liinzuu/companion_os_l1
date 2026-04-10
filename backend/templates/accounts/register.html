@@ -8,7 +8,7 @@
         <div class="card-body p-4">
 
             <h1 class="h4 mb-1 text-center fw-semibold">Create account</h1>
-            <p class="text-center text-muted small mb-4">Get started with Companion OS</p>
+            <p class="text-center mb-4 small" style="color: var(--color-text-muted);">Get started with Companion OS</p>
 
             <form method="post" novalidate>
                 {% csrf_token %}
@@ -18,6 +18,38 @@
                     <label for="{{ field.id_for_label }}" class="form-label small fw-medium">
                         {{ field.label }}
                     </label>
+
+                    {% if field.field.widget.input_type == "password" %}
+                    <!-- Password field: show/hide toggle -->
+                    <div class="input-group">
+                        <input
+                            type="password"
+                            name="{{ field.html_name }}"
+                            id="{{ field.id_for_label }}"
+                            class="form-control {% if field.errors %}is-invalid{% endif %}"
+                            autocomplete="{{ field.html_name }}"
+                        >
+                        <button
+                            type="button"
+                            class="btn btn-outline-secondary"
+                            style="border-color: var(--color-border); color: var(--color-text-muted);"
+                            onclick="togglePassword('{{ field.id_for_label }}', this)"
+                            tabindex="-1"
+                            aria-label="Show or hide password"
+                        >
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" class="eye-icon">
+                                <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"/>
+                                <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"/>
+                            </svg>
+                        </button>
+                        {% if field.errors %}
+                            {% for error in field.errors %}
+                            <div class="invalid-feedback">{{ error }}</div>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                    {% else %}
+                    <!-- Regular field -->
                     <input
                         type="{{ field.field.widget.input_type }}"
                         name="{{ field.html_name }}"
@@ -31,17 +63,17 @@
                         <div class="invalid-feedback">{{ error }}</div>
                         {% endfor %}
                     {% endif %}
+                    {% endif %}
+
                     {% if field.help_text %}
-                    <div class="form-text text-muted small">{{ field.help_text }}</div>
+                    <div class="form-text">{{ field.help_text }}</div>
                     {% endif %}
                 </div>
                 {% endfor %}
 
                 {% if form.non_field_errors %}
                 <div class="alert alert-danger py-2 small">
-                    {% for error in form.non_field_errors %}
-                        {{ error }}
-                    {% endfor %}
+                    {% for error in form.non_field_errors %}{{ error }}{% endfor %}
                 </div>
                 {% endif %}
 
@@ -52,12 +84,24 @@
 
             <hr class="my-4">
 
-            <p class="text-center mb-0 small text-muted">
+            <p class="text-center mb-0 small" style="color: var(--color-text-muted);">
                 Already have an account?
-                <a href="{% url 'accounts:login' %}" class="text-dark fw-medium">Sign in</a>
+                <a href="{% url 'accounts:login' %}" class="fw-medium" style="color: var(--color-text);">Sign in</a>
             </p>
 
         </div>
     </div>
 </div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    function togglePassword(fieldId, btn) {
+        const input = document.getElementById(fieldId);
+        const isHidden = input.type === 'password';
+        input.type = isHidden ? 'text' : 'password';
+        // Swap the icon opacity so the user knows the state changed
+        btn.style.opacity = isHidden ? '1' : '0.5';
+    }
+</script>
 {% endblock %}

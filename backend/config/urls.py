@@ -3,16 +3,15 @@ Companion OS — URL configuration.
 Every request enters here. Routes are added as apps are built.
 """
 from django.contrib import admin
-from django.http import HttpResponse
+from django.shortcuts import redirect, render
 from django.urls import path, include
 
 
 # Temporary home view — placeholder until the real chat interface is built
 def home(request):
     if not request.user.is_authenticated:
-        from django.shortcuts import redirect
         return redirect("accounts:login")
-    return HttpResponse(f"Logged in as {request.user.username}. Home coming soon.")
+    return render(request, "home_placeholder.html", {"user": request.user})
 
 
 urlpatterns = [
