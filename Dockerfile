@@ -21,7 +21,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY backend/ .
 
 # Don't run as root inside the container — security best practice
-RUN adduser --disabled-password --gecos "" appuser
+RUN adduser --disabled-password --gecos "" appuser \
+    && chown -R appuser:appuser /app
 USER appuser
 
 # Expose port 8000 (Django's default)
