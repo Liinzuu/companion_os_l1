@@ -36,7 +36,7 @@ CSRF_COOKIE_SECURE = True
 
 # Static files served by WhiteNoise (no separate file server needed on Railway)
 MIDDLEWARE.insert(1, "whitenoise.middleware.WhiteNoiseMiddleware")
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
 
 # Logging — Railway captures stdout. This gives us errors and warnings in the Railway log viewer.
 # Not a full logging stack. Enough to see what is breaking and when.
