@@ -8,13 +8,12 @@ from .base import *
 DEBUG = False
 
 # Only allow the real domain — set this when Railway gives you the URL
-ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "").split(",")
+ALLOWED_HOSTS = [h.strip() for h in os.environ.get("ALLOWED_HOSTS", "").split(",") if h.strip()]
 
 # Django 4.2 requires this for POST requests (login, forms, chat).
 # Without it, every form submission returns 403 Forbidden.
-CSRF_TRUSTED_ORIGINS = [
-    f"https://{host.strip()}" for host in ALLOWED_HOSTS if host.strip()
-]
+# Must include https:// prefix. Must match the exact domain users visit.
+CSRF_TRUSTED_ORIGINS = [f"https://{host}" for host in ALLOWED_HOSTS]
 
 # Production database — Railway injects DATABASE_URL automatically
 import dj_database_url
