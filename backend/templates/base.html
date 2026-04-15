@@ -126,11 +126,44 @@
             border-color: var(--color-border);
             opacity: 1;
         }
+
+        /* Crisis banner — always visible, never dismissible */
+        .crisis-banner {
+            background-color: var(--color-surface);
+            border-bottom: 1px solid var(--color-border);
+            padding: 0.4rem 1rem;
+            text-align: center;
+            font-size: 0.75rem;
+            color: var(--color-text-muted);
+            line-height: 1.5;
+            font-family: var(--font-body);
+        }
+
+        .crisis-banner a {
+            color: var(--color-text);
+            font-weight: 600;
+            text-decoration: underline;
+        }
+
+        .crisis-banner a:hover {
+            color: var(--color-accent);
+        }
     </style>
 
     {% block extra_css %}{% endblock %}
 </head>
 <body>
+
+    <!-- Crisis banner — permanent, non-dismissible, always visible on every page.
+         This is not a feature. It is a safety requirement.
+         The AI is not a therapist. Users must always see a path to real help. -->
+    <div class="crisis-banner" role="complementary" aria-label="Crisis support information">
+        This is an AI support tool. Not a therapist. Not a substitute for professional help.
+        In crisis, contact:
+        <a href="tel:112">112</a> (EU) &middot;
+        <a href="tel:988">988</a> (US) &middot;
+        <a href="https://findahelpline.com" target="_blank" rel="noopener">Find your helpline</a>
+    </div>
 
     <main>
         {% block content %}{% endblock %}

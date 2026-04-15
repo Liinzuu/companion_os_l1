@@ -2,8 +2,6 @@
 dockerfilePath = "Dockerfile"
 
 [deploy]
-# CRITICAL: startCommand must be ONE command only.
-# Railway's && chain is known to break — only the first command runs.
-# Migrate is handled by a separate release command or on first request.
-# Railway requires $PORT — it injects the port dynamically.
-startCommand = "sh -c 'gunicorn config.wsgi:application --bind 0.0.0.0:$PORT --timeout 120 --workers 1'"
+# Single script handles migrations + gunicorn.
+# No && chain — Railway breaks those. Script runs in sh so $PORT expands.
+startCommand = "sh start.sh"

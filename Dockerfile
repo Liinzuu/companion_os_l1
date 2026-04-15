@@ -31,6 +31,9 @@ RUN DJANGO_SETTINGS_MODULE=config.settings.base \
     DJANGO_SECRET_KEY=build-only-not-real \
     python manage.py collectstatic --noinput
 
+# Make start script executable
+RUN chmod +x start.sh
+
 # Don't run as root inside the container — security best practice
 RUN adduser --disabled-password --gecos "" appuser \
     && chown -R appuser:appuser /app

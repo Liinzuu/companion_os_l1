@@ -34,6 +34,8 @@ class RegisterView(View):
         form = RegisterForm(request.POST)
         if form.is_valid():
             user = form.save()
+            # Mark the invite code as used
+            form._invite.use()
             # Log the user in immediately after registering
             # so they don't have to log in again right away
             login(request, user)
