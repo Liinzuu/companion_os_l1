@@ -24,6 +24,13 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy the rest of the backend code
 COPY backend/ .
 
+# Collect static files at build time so gunicorn can start immediately at runtime.
+# Uses base settings to avoid needing DATABASE_URL during build.
+# WhiteNoise at runtime will serve these files.
+RUN DJANGO_SETTINGS_MODULE=config.settings.base \
+    DJANGO_SECRET_KEY=build-only-not-real \
+    python manage.py collectstatic --noinput
+
 # Don't run as root inside the container — security best practice
 RUN adduser --disabled-password --gecos "" appuser \
     && chown -R appuser:appuser /app
