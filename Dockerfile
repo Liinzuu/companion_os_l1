@@ -36,9 +36,9 @@ RUN adduser --disabled-password --gecos "" appuser \
     && chown -R appuser:appuser /app
 USER appuser
 
-# Expose port 8000 (Django's default)
+# Railway injects $PORT dynamically. Expose is informational only.
 EXPOSE 8000
 
 # Default command: start Django development server
-# docker-compose.yml will override this for production
+# Railway's startCommand overrides this in production
 CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
