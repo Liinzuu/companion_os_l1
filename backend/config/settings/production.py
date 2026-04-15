@@ -27,7 +27,13 @@ DATABASES = {
 }
 
 # Security headers — these protect against common web attacks
-SECURE_SSL_REDIRECT = True
+#
+# SECURE_SSL_REDIRECT is OFF because Railway handles SSL at the proxy level.
+# Railway forwards plain HTTP internally to your app. If Django redirects those
+# to HTTPS, Railway's health check fails and kills the container.
+# Railway's proxy already enforces HTTPS for external users.
+SECURE_SSL_REDIRECT = False
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 SECURE_HSTS_SECONDS = 31536000
 SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 SECURE_HSTS_PRELOAD = True
