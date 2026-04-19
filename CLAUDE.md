@@ -9,13 +9,14 @@ Every decision must be explainable. Document what, why, and why this approach ov
 Never just fix — leave the code better understood than you found it.
 
 ## WHAT THIS PROJECT IS
-Companion OS is an AI-powered cognitive support tool for people whose brains work
-differently under stress — including people with trauma, cognitive differences, crisis
-states, and limited access to professional support.
+Companion OS is an AI-powered educational cognitive support tool that teaches coping
+skills, grounding techniques, and self-awareness to people whose brains work differently
+under stress. Including people with trauma, cognitive differences, crisis states, and
+limited access to professional support.
 
-It has 16 operating modes including crisis grounding, urge support, reality checking,
-boundary work, goal tracking, and habit support. Emergency flagging and professional
-redirect are built in. Safety is non-negotiable.
+It has 16 operating modes that teach grounding, impulse management, reality checking,
+boundary skills, goal tracking, and habit building. Safety is non-negotiable. It does
+not diagnose, treat, or monitor conditions. It teaches skills.
 
 The visual identity is warm and cozy — like a safe room. Not clinical, not corporate.
 Users may be in distress. Every design decision must reflect that.

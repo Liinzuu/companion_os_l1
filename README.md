@@ -1,10 +1,10 @@
 # Companion OS
 
-An AI companion built for people who need more than a chatbot.
+An educational AI companion built for people who need more than a chatbot.
 
 ## What it is
 
-Companion OS is a structured AI support system. It does not replace professional help. It fills the gap between having nothing and having everything. Structure when there is none. Grounding when things get overwhelming. Practical tools for daily life that most people pick up without ever being taught.
+Companion OS is a structured educational cognitive support tool. It teaches coping skills, grounding techniques, and self-awareness to people whose brains work differently under stress. It does not replace professional help. It fills the gap between having nothing and having everything. Structure when there is none. Grounding when things get overwhelming. Practical tools for daily life that most people pick up without ever being taught.
 
 It runs on 16 modes. Each mode activates based on what the user says. The user does not need to know which mode they need.
 
@@ -43,7 +43,7 @@ Every mode has a safety ceiling. If crisis indicators appear in any mode, the sy
 
 ## Philosophy
 
-No mode advises, diagnoses, or replaces professional care. Companion OS provides structure and scaffolding only.
+No mode advises, diagnoses, treats, or replaces professional care. Companion OS teaches skills and provides structure only.
 
 The AI never pastes a hotline number and goes quiet. When someone says something difficult, the response is to stay present, not to exit. Safety and warmth are not opposites.
 
