@@ -17,13 +17,21 @@
      */
 
     body {
-        overflow: hidden; /* prevent page scroll — only the message area scrolls */
+        overflow: hidden;
     }
 
     .chat-layout {
         display: flex;
         flex-direction: column;
-        height: 100%; /* fills remaining space after crisis banner */
+        height: 100%;
+    }
+
+    /* On mobile: make the input bar stick to the bottom of the visible area */
+    @media (max-width: 768px) {
+        .input-bar {
+            position: sticky;
+            bottom: 0;
+        }
     }
 
     /* ── Mode bar ── */
@@ -428,16 +436,6 @@
     const modeBadge = document.getElementById('modeBadge');
     const streamUrl = "{% url 'chat:stream' pk=conversation.pk %}";
     const csrfToken = "{{ csrf_token }}";
-
-    // Fix mobile keyboard: set the layout height to the actual visible viewport
-    function setViewportHeight() {
-        const vh = window.visualViewport ? window.visualViewport.height : window.innerHeight;
-        document.querySelector('.page-wrapper').style.height = vh + 'px';
-    }
-    setViewportHeight();
-    if (window.visualViewport) {
-        window.visualViewport.addEventListener('resize', setViewportHeight);
-    }
 
     // Scroll to bottom
     messageArea.scrollTop = messageArea.scrollHeight;
