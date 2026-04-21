@@ -180,33 +180,47 @@
         width: 100%;
         border: 1px solid var(--color-accent);
         border-radius: 6px;
-        padding: 0.25rem 0.5rem;
+        padding: 0.375rem 0.5rem;
         font-family: var(--font-body);
-        font-size: 0.95rem;
+        font-size: 0.9rem;
         line-height: 1.5;
         background-color: var(--color-bg);
         color: var(--color-text);
+        outline: none;
     }
 
     .rename-input:focus {
-        outline: none;
         box-shadow: 0 0 0 2px rgba(139, 111, 78, 0.15);
     }
 
-    .rename-save-btn {
-        font-family: var(--font-body);
-        font-size: 0.75rem;
-        font-weight: 500;
-        color: var(--color-accent);
-        background: none;
-        border: none;
-        cursor: pointer;
-        padding: 0;
-        margin-top: 0.25rem;
+    .rename-actions {
+        display: flex;
+        gap: 0.375rem;
+        margin-top: 0.375rem;
     }
 
-    .rename-save-btn:hover {
-        color: var(--color-text);
+    .rename-action-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 36px;
+        height: 36px;
+        background: none;
+        border: 1px solid var(--color-border);
+        border-radius: 10px;
+        cursor: pointer;
+        color: var(--color-text-muted);
+        transition: color 0.15s ease, border-color 0.15s ease;
+    }
+
+    .rename-cancel-btn:hover {
+        color: #c0392b;
+        border-color: #c0392b;
+    }
+
+    .rename-confirm-btn:hover {
+        color: #27ae60;
+        border-color: #27ae60;
     }
 </style>
 {% endblock %}
@@ -254,7 +268,20 @@
                     {% csrf_token %}
                     <input type="hidden" name="next" value="/chat/?list=1">
                     <input type="text" name="title" class="rename-input" value="{{ conv.title }}" placeholder="{% with first_msg=conv.messages.first %}{% if first_msg %}{{ first_msg.content|truncatechars:60 }}{% else %}Name this conversation{% endif %}{% endwith %}">
-                    <button type="submit" class="rename-save-btn">Save</button>
+                    <div class="rename-actions">
+                        <button type="button" class="rename-action-btn rename-cancel-btn" aria-label="Cancel" title="Cancel"
+                                onclick="var p = document.getElementById('preview-{{ conv.pk }}'); var f = document.getElementById('rename-{{ conv.pk }}'); p.style.display='block'; f.style.display='none';">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="18" y1="6" x2="6" y2="18"></line>
+                                <line x1="6" y1="6" x2="18" y2="18"></line>
+                            </svg>
+                        </button>
+                        <button type="submit" class="rename-action-btn rename-confirm-btn" aria-label="Save" title="Save">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                        </button>
+                    </div>
                 </form>
                 <div class="conversation-mode">
                     {% if conv.active_mode == "auto" %}Listening
