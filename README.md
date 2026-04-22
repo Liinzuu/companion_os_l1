@@ -53,7 +53,7 @@ Getting through difficult moments draws on behaviour change research. Strong imp
 
 Listening and expression draw on person-centred approaches. Genuine presence without premature judgment is itself useful. Saying what you actually mean starts with knowing what it is.
 
-Habit and aim work draws on habit formation frameworks, meaning-centred psychology, and growth mindset research. Identity matters more than willpower. An aim transforms the experience of daily effort. How feedback is framed shapes whether people grow or shut down.
+Habit and Aim work draws on habit formation frameworks, meaning-centred psychology, and growth mindset research. Identity matters more than willpower. An aim transforms the experience of daily effort. How feedback is framed shapes whether people grow or shut down.
 
 ## Philosophy
 
@@ -73,3 +73,6 @@ Currently in private pilot preparation. Not yet open to the public. Invite-only 
 
 Liina Suoniemi / [InkNCode Solutions](https://www.linkedin.com/in/liina-suoniemi)
 
+## License
+
+Licensed under the MIT License. See `LICENSE` for details.
