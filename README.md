@@ -41,6 +41,20 @@ Each mode solves a specific problem. None of them are decorative. Modes activate
 
 Every mode has a safety ceiling. If crisis indicators appear in any mode, the system shifts to Calm Mode. A permanent crisis banner with local numbers in the user's language is always visible. A one-tap emergency button is always one step away. The AI does not go cold. The conversation continues. The safety layer is in the interface.
 
+## What is behind each mode
+
+Every mode draws on established psychology and behaviour research. Nothing here is invented by me. The thinking behind each mode can be traced to its sources.
+
+Staying present in distress draws on trauma-informed approaches. Distress is a physiological response, not a character flaw. The body needs to come first.
+
+Separating facts from stories draws on cognitive approaches to thinking clearly under pressure. We build narratives around events. Acting on the narrative instead of the facts is where things go wrong.
+
+Getting through difficult moments draws on behaviour change research. Strong impulses follow predictable patterns. Knowing that changes how you wait them out.
+
+Listening and expression draw on person-centred approaches. Genuine presence without premature judgment is itself useful. Saying what you actually mean starts with knowing what it is.
+
+Habit and aim work draws on habit formation frameworks, meaning-centred psychology, and growth mindset research. Identity matters more than willpower. An aim transforms the experience of daily effort. How feedback is framed shapes whether people grow or shut down.
+
 ## Philosophy
 
 No mode advises, diagnoses, treats, or replaces professional care. Companion OS teaches skills and provides structure only.
