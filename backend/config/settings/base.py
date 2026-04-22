@@ -108,7 +108,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # Where to send users after login / logout
 LOGIN_URL = "accounts:login"
-LOGIN_REDIRECT_URL = "chat:chat"
+LOGIN_REDIRECT_URL = "accounts:impact_survey"
 LOGOUT_REDIRECT_URL = "accounts:login"
 
 # Anthropic API key — from environment, never hardcoded

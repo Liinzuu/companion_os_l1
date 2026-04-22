@@ -1,0 +1,275 @@
+{% extends "base.html" %}
+
+{% block title %}Impact Survey — Companion OS{% endblock %}
+
+{% block extra_css %}
+<style>
+    body {
+        overflow-y: auto;
+    }
+
+    .survey-layout {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 1.5rem 1rem 3rem;
+    }
+
+    .survey-layout h1 {
+        font-family: var(--font-heading);
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: var(--color-text);
+        margin-bottom: 0.5rem;
+    }
+
+    .survey-intro {
+        font-size: 0.9rem;
+        line-height: 1.7;
+        color: var(--color-text-muted);
+        margin-bottom: 1.5rem;
+    }
+
+    .survey-question {
+        margin-bottom: 1.5rem;
+    }
+
+    .survey-question label {
+        display: block;
+        font-size: 0.95rem;
+        line-height: 1.6;
+        color: var(--color-text);
+        margin-bottom: 0.5rem;
+    }
+
+    .scale-row {
+        display: flex;
+        gap: 0.25rem;
+        align-items: center;
+        justify-content: space-between;
+        max-width: 350px;
+    }
+
+    .scale-row label {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.25rem;
+        cursor: pointer;
+        font-size: 0.75rem;
+        color: var(--color-text-muted);
+    }
+
+    .scale-row input[type="radio"] {
+        width: 20px;
+        height: 20px;
+        accent-color: var(--color-accent);
+        cursor: pointer;
+    }
+
+    .survey-section-title {
+        font-family: var(--font-heading);
+        font-size: 0.85rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: var(--color-text-muted);
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+        padding-top: 1rem;
+        border-top: 1px solid var(--color-border);
+    }
+
+    .survey-select, .survey-textarea {
+        width: 100%;
+        border: 1px solid var(--color-border);
+        border-radius: 8px;
+        padding: 0.5rem 0.75rem;
+        font-family: var(--font-body);
+        font-size: 0.9rem;
+        background-color: var(--color-surface);
+        color: var(--color-text);
+    }
+
+    .survey-textarea {
+        min-height: 80px;
+        resize: vertical;
+        line-height: 1.6;
+    }
+
+    .survey-select:focus, .survey-textarea:focus {
+        outline: none;
+        border-color: var(--color-accent);
+        box-shadow: 0 0 0 2px rgba(139, 111, 78, 0.15);
+    }
+
+    .survey-check {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-bottom: 0.375rem;
+        font-size: 0.9rem;
+    }
+
+    .survey-check input[type="checkbox"] {
+        width: 18px;
+        height: 18px;
+        accent-color: var(--color-accent);
+    }
+
+    .survey-submit {
+        display: block;
+        width: 100%;
+        padding: 0.75rem;
+        font-family: var(--font-body);
+        font-size: 1rem;
+        font-weight: 500;
+        color: #FDFAF5;
+        background-color: var(--color-accent);
+        border: none;
+        border-radius: 12px;
+        cursor: pointer;
+        margin-top: 2rem;
+        transition: background-color 0.15s ease;
+    }
+
+    .survey-submit:hover {
+        background-color: #7a6044;
+    }
+
+    .optional-tag {
+        font-size: 0.75rem;
+        color: var(--color-text-muted);
+        font-weight: normal;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="survey-layout">
+
+    <h1>{% if is_followup %}How are things now?{% else %}Before we begin{% endif %}</h1>
+
+    <div class="survey-intro">
+        {% if is_followup %}
+        It has been about 4 weeks since you started using Companion OS. These are the same questions from your first visit. Your answers help us understand whether this tool makes a real difference in daily life.
+        {% else %}
+        This short survey helps us understand whether Companion OS makes a difference in daily life. All answers are anonymised and used only for product research. This is not a clinical assessment. It takes about 2 minutes.
+        {% endif %}
+    </div>
+
+    <form method="post">
+        {% csrf_token %}
+        <input type="hidden" name="survey_type" value="{{ survey_type }}">
+
+        <!-- Scaled questions -->
+        <div class="survey-question">
+            <label>In the past week, I felt able to handle difficult moments in my day.</label>
+            <div class="scale-row">
+                <label><input type="radio" name="q1" value="1" required> <span>Not at all</span></label>
+                <label><input type="radio" name="q1" value="2"> <span>A little</span></label>
+                <label><input type="radio" name="q1" value="3"> <span>Somewhat</span></label>
+                <label><input type="radio" name="q1" value="4"> <span>Quite a bit</span></label>
+                <label><input type="radio" name="q1" value="5"> <span>Very much</span></label>
+            </div>
+        </div>
+
+        <div class="survey-question">
+            <label>I notice when my stress or emotions are building up before they become overwhelming.</label>
+            <div class="scale-row">
+                <label><input type="radio" name="q2" value="1" required> <span>Not at all</span></label>
+                <label><input type="radio" name="q2" value="2"> <span>A little</span></label>
+                <label><input type="radio" name="q2" value="3"> <span>Somewhat</span></label>
+                <label><input type="radio" name="q2" value="4"> <span>Quite a bit</span></label>
+                <label><input type="radio" name="q2" value="5"> <span>Very much</span></label>
+            </div>
+        </div>
+
+        <div class="survey-question">
+            <label>When I feel stuck or overwhelmed, I have something I can try that helps.</label>
+            <div class="scale-row">
+                <label><input type="radio" name="q3" value="1" required> <span>Not at all</span></label>
+                <label><input type="radio" name="q3" value="2"> <span>A little</span></label>
+                <label><input type="radio" name="q3" value="3"> <span>Somewhat</span></label>
+                <label><input type="radio" name="q3" value="4"> <span>Quite a bit</span></label>
+                <label><input type="radio" name="q3" value="5"> <span>Very much</span></label>
+            </div>
+        </div>
+
+        <div class="survey-question">
+            <label>I have been able to get through my daily tasks and responsibilities.</label>
+            <div class="scale-row">
+                <label><input type="radio" name="q4" value="1" required> <span>With great difficulty</span></label>
+                <label><input type="radio" name="q4" value="2"> <span>With difficulty</span></label>
+                <label><input type="radio" name="q4" value="3"> <span>Managing</span></label>
+                <label><input type="radio" name="q4" value="4"> <span>Fairly well</span></label>
+                <label><input type="radio" name="q4" value="5"> <span>With ease</span></label>
+            </div>
+        </div>
+
+        {% if is_followup %}
+        <div class="survey-question">
+            <label>Overall, I feel more steady and grounded in my daily life than I did a month ago.</label>
+            <div class="scale-row">
+                <label><input type="radio" name="q5" value="1" required> <span>Not at all</span></label>
+                <label><input type="radio" name="q5" value="2"> <span>A little</span></label>
+                <label><input type="radio" name="q5" value="3"> <span>Somewhat</span></label>
+                <label><input type="radio" name="q5" value="4"> <span>Quite a bit</span></label>
+                <label><input type="radio" name="q5" value="5"> <span>Very much</span></label>
+            </div>
+        </div>
+        {% endif %}
+
+        <!-- Background section -->
+        <div class="survey-section-title">About you <span class="optional-tag">(all optional)</span></div>
+
+        <div class="survey-question">
+            <label>Age range</label>
+            <select name="age_range" class="survey-select">
+                <option value="">Prefer not to say</option>
+                <option value="under_18">Under 18</option>
+                <option value="18_25">18-25</option>
+                <option value="26_35">26-35</option>
+                <option value="36_50">36-50</option>
+                <option value="51_65">51-65</option>
+                <option value="over_65">Over 65</option>
+            </select>
+        </div>
+
+        <div class="survey-question">
+            <label>Current situation <span class="optional-tag">(select all that apply)</span></label>
+            <div class="survey-check"><input type="checkbox" name="situation_working_ft"> Working full time</div>
+            <div class="survey-check"><input type="checkbox" name="situation_working_pt"> Working part time</div>
+            <div class="survey-check"><input type="checkbox" name="situation_studying_ft"> Studying full time</div>
+            <div class="survey-check"><input type="checkbox" name="situation_studying_pt"> Studying part time</div>
+            <div class="survey-check"><input type="checkbox" name="situation_parent"> Parent or caregiver</div>
+        </div>
+
+        <div class="survey-question">
+            <label>Country</label>
+            <select name="country" class="survey-select" id="countrySelect" onchange="document.getElementById('countryOther').style.display = this.value === 'other' ? 'block' : 'none';">
+                <option value="">Prefer not to say</option>
+                <option value="fi">Finland</option>
+                <option value="ee">Estonia</option>
+                <option value="other">Other</option>
+            </select>
+            <input type="text" name="country_other" id="countryOther" class="survey-select" style="display: none; margin-top: 0.5rem;" placeholder="Which country?">
+        </div>
+
+        <!-- Open text -->
+        {% if is_followup %}
+        <div class="survey-question">
+            <label>Is there anything that has changed in your daily life since you started using Companion OS? <span class="optional-tag">(optional)</span></label>
+            <textarea name="what_changed" class="survey-textarea" placeholder="A few words or as much as you like."></textarea>
+        </div>
+        {% else %}
+        <div class="survey-question">
+            <label>What brought you to Companion OS? <span class="optional-tag">(optional)</span></label>
+            <textarea name="what_brought_you" class="survey-textarea" placeholder="A few words or as much as you like."></textarea>
+        </div>
+        {% endif %}
+
+        <button type="submit" class="survey-submit">{% if is_followup %}Submit and continue{% else %}Submit and start using Companion{% endif %}</button>
+    </form>
+
+</div>
+{% endblock %}

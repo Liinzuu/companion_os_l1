@@ -13,6 +13,7 @@ from django.utils.decorators import method_decorator
 from django.views import View
 
 from .forms import RegisterForm
+from .models import ImpactSurvey
 
 
 class RegisterView(View):
@@ -41,9 +42,87 @@ class RegisterView(View):
             # Log the user in immediately after registering
             # so they don't have to log in again right away
             login(request, user)
+            # If user consented to impact survey, show it first
+            if user.consent_impact_survey:
+                return redirect("accounts:impact_survey")
             return redirect("home")
         # Form invalid — re-render with error messages attached to the form
         return render(request, self.template_name, {"form": form})
+
+
+@method_decorator(login_required, name="dispatch")
+class ImpactSurveyView(View):
+    """
+    Impact survey page. Shows automatically on first login if user consented.
+    Shows again after 4 weeks for the follow-up.
+
+    This is product impact research, not clinical assessment.
+    Scores are never shown back to the user.
+    """
+    template_name = "accounts/impact_survey.html"
+
+    def get(self, request):
+        survey_type = self._get_survey_type(request.user)
+        if not survey_type:
+            return redirect("chat:conversation_list")
+        return render(request, self.template_name, {
+            "survey_type": survey_type,
+            "is_followup": survey_type == "followup",
+        })
+
+    def post(self, request):
+        survey_type = request.POST.get("survey_type", "baseline")
+
+        # Parse situation checkboxes (multiple select)
+        situation = []
+        for option in ["working_ft", "working_pt", "studying_ft", "studying_pt", "parent"]:
+            if request.POST.get(f"situation_{option}"):
+                situation.append(option)
+
+        survey = ImpactSurvey(
+            user=request.user,
+            survey_type=survey_type,
+            handle_difficult_moments=int(request.POST.get("q1", 3)),
+            notice_stress_building=int(request.POST.get("q2", 3)),
+            have_something_to_try=int(request.POST.get("q3", 3)),
+            get_through_daily_tasks=int(request.POST.get("q4", 3)),
+            age_range=request.POST.get("age_range", ""),
+            situation=situation,
+            country=request.POST.get("country_other", "").strip() or request.POST.get("country", ""),
+            what_brought_you=request.POST.get("what_brought_you", ""),
+        )
+
+        if survey_type == "followup":
+            survey.feel_more_grounded = int(request.POST.get("q5", 3))
+            survey.what_changed = request.POST.get("what_changed", "")
+
+        survey.save()
+        return redirect("chat:conversation_list")
+
+    def _get_survey_type(self, user):
+        """Determine which survey to show, or None if no survey needed."""
+        if not user.consent_impact_survey:
+            return None
+
+        has_baseline = ImpactSurvey.objects.filter(
+            user=user, survey_type="baseline"
+        ).exists()
+
+        if not has_baseline:
+            return "baseline"
+
+        # Check if follow-up is due (4+ weeks since account creation)
+        from django.utils import timezone
+        import datetime
+        weeks_since_signup = (timezone.now() - user.created_at).days // 7
+        if weeks_since_signup >= 4:
+            has_followup = ImpactSurvey.objects.filter(
+                user=user, survey_type="followup"
+            ).exists()
+            if not has_followup:
+                return "followup"
+
+        return None
 
 
 @method_decorator(login_required, name="dispatch")

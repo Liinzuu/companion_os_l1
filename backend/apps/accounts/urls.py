@@ -38,4 +38,9 @@ urlpatterns = [
         views.DeleteAccountView.as_view(),
         name="delete_account",
     ),
+    path(
+        "survey/",
+        views.ImpactSurveyView.as_view(),
+        name="impact_survey",
+    ),
 ]

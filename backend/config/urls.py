@@ -3,7 +3,7 @@ Companion OS — URL configuration.
 Every request enters here. Routes are added as apps are built.
 """
 from django.contrib import admin
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
 from django.urls import path, include
 
 
@@ -17,6 +17,7 @@ urlpatterns = [
     path("admin/", admin.site.urls),
 
     path("", home, name="home"),
+    path("privacy/", lambda request: render(request, "privacy.html"), name="privacy"),
 
     # Accounts — login, logout, register
     path("accounts/", include("apps.accounts.urls")),
