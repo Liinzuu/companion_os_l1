@@ -34,6 +34,7 @@ LOCAL_APPS = [
     "apps.chat",
     "apps.safety",
     "apps.admin_panel",
+    "apps.usage",
 ]
 
 INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS

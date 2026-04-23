@@ -36,6 +36,42 @@ class Conversation(models.Model):
     def __str__(self):
         return f"{self.user.username} — {self.started_at:%Y-%m-%d %H:%M}"
 
+    @classmethod
+    def create_for_user(cls, user):
+        """
+        The ONE place where conversations are created.
+
+        Why a classmethod instead of just Conversation.objects.create()?
+        Jon's recommendation. There are two paths that create conversations:
+        1. NewConversationView (user clicks "New chat")
+        2. ConversationListView (auto-creates on first visit)
+        Both must check the quota. Centralising here prevents drift.
+
+        Returns (conversation, error_message).
+        conversation is None if quota is exceeded.
+        error_message is empty string if creation succeeded.
+        """
+        from apps.usage.models import UsageQuota
+
+        quota, _ = UsageQuota.objects.get_or_create(user=user)
+        allowed, reason = quota.can_create_conversation()
+
+        if not allowed:
+            return None, reason
+
+        conversation = cls.objects.create(user=user)
+        quota.increment()
+
+        # Log usage event if user consented to tracking
+        if user.consent_usage_tracking:
+            from apps.usage.models import UsageEvent
+            UsageEvent.objects.create(
+                user=user,
+                event_type="conversation_created",
+            )
+
+        return conversation, ""
+
 
 class Message(models.Model):
     """

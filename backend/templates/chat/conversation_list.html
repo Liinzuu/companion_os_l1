@@ -119,6 +119,24 @@
         color: var(--color-text);
     }
 
+    .quota-info {
+        text-align: center;
+        font-size: 0.8rem;
+        color: var(--color-text-muted);
+        margin-bottom: 1rem;
+    }
+
+    .quota-error {
+        background-color: #FFF3E0;
+        border: 1px solid #E6C9A0;
+        border-radius: 10px;
+        padding: 0.875rem 1rem;
+        margin-bottom: 1rem;
+        color: var(--color-text);
+        font-size: 0.9rem;
+        line-height: 1.6;
+    }
+
     .conversation-card-row {
         display: flex;
         align-items: stretch;
@@ -243,6 +261,18 @@
             <div style="width: 36px; height: 36px;"></div>
         </div>
     </div>
+
+    {% if quota_error %}
+    <div class="quota-error">
+        {{ quota_error }}
+    </div>
+    {% endif %}
+
+    {% if daily_remaining is not None %}
+    <div class="quota-info">
+        {{ daily_remaining }} of {{ daily_limit }} conversations left today · {{ monthly_remaining }} of {{ monthly_limit }} this month
+    </div>
+    {% endif %}
 
     {% if conversations %}
         {% for conv in conversations %}

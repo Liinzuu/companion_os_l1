@@ -321,6 +321,9 @@
     <!-- Top bar -->
     <div class="mode-bar">
         <span style="font-family: var(--font-heading); font-size: 0.85rem; font-weight: 500; color: var(--color-text-muted);">Companion</span>
+        {% if daily_remaining is not None %}
+        <span style="font-size: 0.7rem; color: var(--color-text-muted); margin-left: 0.75rem;">{{ daily_remaining }}/{{ daily_limit }} today</span>
+        {% endif %}
 
         <div style="display: flex; gap: 1rem; align-items: center;">
             <!-- Conversation dropdown -->

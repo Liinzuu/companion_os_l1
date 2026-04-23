@@ -70,17 +70,37 @@ class ConversationListView(View):
         conversations = Conversation.objects.filter(user=request.user)
         if not conversations.exists():
             # First visit ever — create a conversation and go straight to it
-            conversation = Conversation.objects.create(user=request.user)
-            return redirect("chat:chat", pk=conversation.pk)
+            conversation, error = Conversation.create_for_user(request.user)
+            if conversation:
+                return redirect("chat:chat", pk=conversation.pk)
+            # Quota exceeded on first visit should never happen with defaults,
+            # but handle it gracefully
+            return render(request, self.template_name, {
+                "conversations": conversations,
+                "quota_error": error,
+                **self._quota_context(request.user),
+            })
 
         # Check if ?list=1 is in the URL — user explicitly wants the full list
         if request.GET.get("list"):
             return render(request, self.template_name, {
                 "conversations": conversations,
+                "quota_error": request.GET.get("quota_error", ""),
+                **self._quota_context(request.user),
             })
 
         # Default: go straight to the most recent conversation
         return redirect("chat:chat", pk=conversations.first().pk)
+
+    def _quota_context(self, user):
+        from apps.usage.models import UsageQuota
+        quota, _ = UsageQuota.objects.get_or_create(user=user)
+        return {
+            "daily_remaining": quota.daily_remaining,
+            "daily_limit": quota.daily_limit,
+            "monthly_remaining": quota.monthly_remaining,
+            "monthly_limit": quota.monthly_limit,
+        }
 
 
 @method_decorator(login_required, name="dispatch")
@@ -88,10 +108,17 @@ class NewConversationView(View):
     """
     Creates a fresh conversation and redirects to it.
     POST only — changing state should never be a GET request.
+
+    Goes through Conversation.create_for_user() which checks quota.
+    If quota is exceeded, redirects to the conversation list with an error.
     """
     def post(self, request):
-        conversation = Conversation.objects.create(user=request.user)
-        return redirect("chat:chat", pk=conversation.pk)
+        conversation, error = Conversation.create_for_user(request.user)
+        if conversation:
+            return redirect("chat:chat", pk=conversation.pk)
+        # Quota exceeded — redirect to list with error message
+        from urllib.parse import quote
+        return redirect(f"/chat/?list=1&quota_error={quote(error)}")
 
 
 @method_decorator(login_required, name="dispatch")
@@ -173,10 +200,17 @@ class ChatView(View):
         user_conversations = Conversation.objects.filter(
             user=request.user
         )[:10]
+        # Quota info for the UI
+        from apps.usage.models import UsageQuota
+        quota, _ = UsageQuota.objects.get_or_create(user=request.user)
         return render(request, self.template_name, {
             "conversation": conversation,
             "messages": messages,
             "user_conversations": user_conversations,
+            "daily_remaining": quota.daily_remaining,
+            "daily_limit": quota.daily_limit,
+            "monthly_remaining": quota.monthly_remaining,
+            "monthly_limit": quota.monthly_limit,
         })
 
     def post(self, request, pk):
