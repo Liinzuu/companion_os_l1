@@ -12,3 +12,6 @@ backend/media/
 
 # Docker
 postgres_data/
+
+# Internal audit and scan reports (VIBECODER, GUARDIAN-OS, SENTINEL output)
+reviews/
