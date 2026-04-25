@@ -41,15 +41,16 @@ INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    # Kill switch: checks SystemConfig.maintenance_mode on every request.
+    # Exempts /admin/ and /static/. Fails open on DB error.
+    # See apps/safety/middleware.py for full design notes.
+    "apps.safety.middleware.MaintenanceModeMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    # Our security middleware — prompt injection protection (Layer 1)
-    # Will be built in apps/safety/middleware.py
-    # "apps.safety.middleware.SecurityMiddleware",  # uncomment when built
 ]
 
 ROOT_URLCONF = "config.urls"
