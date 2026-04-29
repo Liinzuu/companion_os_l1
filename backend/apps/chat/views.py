@@ -18,6 +18,7 @@ import anthropic
 logger = logging.getLogger(__name__)
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
+from django.core.cache import cache
 from django.http import StreamingHttpResponse
 from django.shortcuts import render, redirect
 from django.utils.decorators import method_decorator
@@ -295,6 +296,18 @@ class StreamView(View):
             return None
 
     def post(self, request, pk):
+        # Rate limit: 20 stream requests per minute per user.
+        # Protects Claude API budget from accidental or deliberate hammering.
+        # Resets automatically after 60 seconds. Warm message, not a technical error.
+        rate_key = f"stream_rate_{request.user.id}"
+        request_count = cache.get(rate_key, 0)
+        if request_count >= 20:
+            return StreamingHttpResponse(
+                self._error_stream("You're sending messages quickly. Give it a moment and try again."),
+                content_type="text/event-stream",
+            )
+        cache.set(rate_key, request_count + 1, timeout=60)
+
         try:
             body = json.loads(request.body)
             user_input = body.get("message", "").strip()
