@@ -17,6 +17,9 @@ redis==5.0.3
 # Encryption — conversation content encrypted at rest
 cryptography==42.0.5
 
+# Login brute force protection
+django-axes==7.0.0
+
 # Production only
 dj-database-url==2.1.0
 whitenoise==6.6.0
