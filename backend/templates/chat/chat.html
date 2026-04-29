@@ -563,7 +563,7 @@
                             }
 
                             if (data.error) {
-                                assistantBubble.textContent = 'Something went wrong. Try again.';
+                                assistantBubble.textContent = data.error;
                                 assistantBubble.style.opacity = '0.6';
                                 sendBtn.disabled = false;
                             }
