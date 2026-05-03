@@ -4,6 +4,20 @@
 
 {% block extra_css %}
 <style>
+    /* Crisis banner: same edges as the message area (1rem padding each side) */
+    .crisis-banner {
+        width: calc(100% - 2rem);
+        max-width: none;
+        margin-bottom: 4px;
+    }
+
+    @media (min-width: 768px) {
+        .crisis-banner {
+            white-space: nowrap;
+            font-size: 13px;
+        }
+    }
+
     /*
      * Chat layout: three vertical zones.
      * 1. Mode bar — top, fixed height, shows current mode
@@ -30,9 +44,14 @@
     /* ── Mode bar ── */
     .mode-bar {
         flex-shrink: 0;
-        padding: 0.75rem 1rem;
-        border-bottom: 1px solid var(--color-border);
-        background-color: var(--color-surface);
+        align-self: center;
+        width: calc(100% - 2rem);
+        max-width: none;
+        margin: 4px auto 8px;
+        padding: 10px 20px;
+        background: #FAF7F2;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(26, 20, 10, 0.08);
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -100,29 +119,39 @@
 
     .message-user {
         align-self: flex-end;
-        background-color: var(--color-accent);
+        background-color: #FAF7F2;
+        border: 1.5px solid var(--color-accent);
+        box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.18);
         color: #1A1A1A;
         border-bottom-right-radius: 4px;
-        white-space: pre-wrap;
     }
 
     .message-assistant {
         align-self: flex-start;
-        background-color: var(--color-surface);
+        background-color: #FAF7F2;
         color: var(--color-text);
-        border: 1px solid var(--color-border);
+        border: 1.5px solid #B8BCC8;
+        box-shadow: 0 0 0 3px rgba(184, 188, 200, 0.18);
         border-bottom-left-radius: 4px;
     }
 
-    /* Paragraph spacing inside Companion's bubbles.
-       Content is rendered via linebreaks filter (plain text → <p> tags).
-       p:empty hides blank paragraphs from double newlines. */
+    /* Paragraph spacing inside both bubbles.
+       Both roles use the linebreaks filter (plain text → <p> tags).
+       p:empty hides blank paragraphs from leading/trailing newlines.
+       p:first-child margin-top:0 kills the browser default top gap. */
+    .message-user p,
     .message-assistant p {
         margin-bottom: 0.5em;
     }
+    .message-user p:last-child,
     .message-assistant p:last-child {
         margin-bottom: 0;
     }
+    .message-user p:first-child,
+    .message-assistant p:first-child {
+        margin-top: 0;
+    }
+    .message-user p:empty,
     .message-assistant p:empty {
         display: none;
     }
@@ -151,7 +180,7 @@
         padding: 0.625rem 1rem;
         font-family: var(--font-body);
         font-size: 1rem;
-        background-color: var(--color-surface);
+        background-color: #FAF7F2;
         color: var(--color-text);
         resize: none;
         line-height: 1.5;
@@ -381,7 +410,7 @@
         <!-- Message bubbles -->
         {% for message in messages %}
         <div class="message message-{{ message.role }}">
-            {% if message.role == "assistant" %}{{ message.content|linebreaks }}{% else %}{{ message.content }}{% endif %}
+            {{ message.content|linebreaks }}
         </div>
         {% endfor %}
         {% endif %}

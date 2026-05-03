@@ -23,14 +23,14 @@
          * every component updates automatically. No hunting through stylesheets.
          */
         :root {
-            --color-bg:         #FAF7F2;  /* comp-base — parchment, light and open */
-            --color-surface:    #F5F0E8;  /* comp-base-warm — card surface, one step warmer */
-            --color-text:       #1A1A1A;  /* comp-text — near-black, readable without harshness */
-            --color-text-muted: #4A4540;  /* comp-text-soft — secondary labels, hints */
-            --color-accent:     #C9A84C;  /* comp-gold — buttons, links, focus */
-            --color-accent-dim: #A08030;  /* comp-gold-dim — hover, active states */
-            --color-accent-light: #DFC078; /* comp-gold-light — highlights */
-            --color-border:     #E8E4DC;  /* comp-neutral — borders, dividers */
+            --color-bg:         #EDE8DF;  /* darker warm grey — outer page */
+            --color-surface:    #FAF7F2;  /* lighter parchment — cards sit on top */
+            --color-text:       #1A1A1A;  /* near-black — readable without harshness */
+            --color-text-muted: #4A4540;  /* secondary labels, hints */
+            --color-accent:     #C9952A;  /* warm premium gold */
+            --color-accent-dim: #B8860B;  /* darker hover state */
+            --color-accent-light: #CFB44A; /* richer highlight */
+            --color-border:     #E8E4DC;  /* borders, dividers */
 
             --font-body:    'Jost', sans-serif;
             --font-heading: 'Cormorant Garamond', serif;
@@ -63,8 +63,8 @@
 
         /* Form inputs */
         .form-control {
-            background-color: var(--color-surface);
-            border-color: var(--color-border);
+            background-color: #FDFAF6;
+            border: 1px solid #C8C0B0;
             color: var(--color-text);
             border-radius: 8px;
             padding: 0.625rem 0.875rem;
@@ -73,10 +73,10 @@
         }
 
         .form-control:focus {
-            background-color: var(--color-surface);
+            background-color: #FDFAF6;
             border-color: var(--color-accent);
             color: var(--color-text);
-            box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.18);
+            box-shadow: 0 0 0 3px rgba(184, 134, 11, 0.18);
         }
 
         .form-control.is-invalid {
@@ -99,14 +99,16 @@
             border-radius: 8px;
             padding: 0.625rem 1.25rem;
             font-size: var(--text-base);
-            transition: background-color 0.15s ease;
+            box-shadow: 0 2px 8px rgba(184, 134, 11, 0.3);
+            transition: background-color 0.15s ease, box-shadow 0.15s ease;
         }
 
         .btn-primary-warm:hover,
         .btn-primary-warm:focus {
-            background-color: var(--color-accent-dim);
-            border-color: var(--color-accent-dim);
+            background-color: #D4A820;
+            border-color: #D4A820;
             color: #1A1A1A;
+            transition: background-color 0.2s ease;
         }
 
         /* Links */
@@ -147,25 +149,24 @@
 
         .crisis-banner {
             flex-shrink: 0;
-            position: sticky;
-            top: 0;
-            z-index: 50;
-            background-color: var(--color-border);
-            border-bottom: 1px solid #D4CFCA;
-            padding: 0.625rem 1rem;
+            align-self: center;
+            width: calc(100% - 2rem);
+            max-width: 560px;
+            margin: 16px auto;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(26, 20, 10, 0.08);
+            background: #FAF7F2;
             text-align: center;
-            font-size: 0.95rem;
-            color: var(--color-text-muted);
+            font-size: 13px;
+            color: #1A1A1A;
             line-height: 1.6;
             font-family: var(--font-body);
         }
 
         /* On phone: stack the text and links on separate lines */
         @media (max-width: 480px) {
-            .crisis-banner {
-                font-size: 0.9rem;
-                padding: 0.625rem 0.75rem;
-            }
             .crisis-links {
                 display: block;
                 margin-top: 0.25rem;
@@ -173,13 +174,24 @@
         }
 
         .crisis-banner a {
-            color: var(--color-text);
-            font-weight: 500;
+            color: #c0392b;
+            font-weight: 600;
             text-decoration: underline;
         }
 
         .crisis-banner a:hover {
-            color: var(--color-accent-dim);
+            color: #a93226;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
+
+        /* Override browser autofill yellow — Chrome/Safari inject their own background */
+        input:-webkit-autofill,
+        input:-webkit-autofill:hover,
+        input:-webkit-autofill:focus {
+            -webkit-box-shadow: 0 0 0px 1000px #FDFAF6 inset;
+            box-shadow: 0 0 0px 1000px #FDFAF6 inset;
+            -webkit-text-fill-color: #1A1A1A;
         }
     </style>
 

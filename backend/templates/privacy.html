@@ -8,13 +8,25 @@
         overflow-y: auto;
     }
 
-    .privacy-layout {
-        max-width: 650px;
-        margin: 0 auto;
-        padding: 2rem 1rem 3rem;
+    /* Crisis banner matches card width on this page (default 560px from base.html is correct) */
+
+    .privacy-card {
+        max-width: 560px;
+        width: calc(100% - 2rem);
+        margin: 48px auto;
+        background: #FAF7F2;
+        border-radius: 12px;
+        box-shadow: 0 4px 24px rgba(26, 20, 10, 0.08);
+        padding: 48px;
     }
 
-    .privacy-layout h1 {
+    @media (max-width: 600px) {
+        .privacy-card {
+            padding: 24px 20px;
+        }
+    }
+
+    .privacy-card h1 {
         font-family: var(--font-heading);
         font-size: 1.5rem;
         font-weight: 600;
@@ -22,7 +34,7 @@
         margin-bottom: 0.5rem;
     }
 
-    .privacy-layout h2 {
+    .privacy-card h2 {
         font-family: var(--font-heading);
         font-size: 1.1rem;
         font-weight: 600;
@@ -31,18 +43,18 @@
         margin-bottom: 0.75rem;
     }
 
-    .privacy-layout p, .privacy-layout li {
+    .privacy-card p, .privacy-card li {
         font-size: 1rem;
         line-height: 1.7;
-        color: var(--color-text);
+        color: #3A3530;
     }
 
-    .privacy-layout ul {
+    .privacy-card ul {
         padding-left: 1.25rem;
         margin-bottom: 1rem;
     }
 
-    .privacy-layout li {
+    .privacy-card li {
         margin-bottom: 0.375rem;
     }
 
@@ -72,8 +84,8 @@
     .privacy-contact {
         margin-top: 2rem;
         padding: 1rem;
-        background-color: var(--color-surface);
-        border: 1px solid var(--color-border);
+        background-color: #F5F0E8;
+        border: 1px solid #E8E4DC;
         border-radius: 12px;
         font-size: 0.9rem;
     }
@@ -81,9 +93,9 @@
 {% endblock %}
 
 {% block content %}
-<div class="privacy-layout">
+<div class="privacy-card">
 
-    <a href="{% url 'accounts:register' %}" class="privacy-btn" style="margin-bottom: 1rem;">← Back to registration</a>
+    <a href="{% url 'accounts:register' %}" class="privacy-btn" style="margin-bottom: 1rem;">← Back</a>
     <h1>Privacy Notice</h1>
     <p class="privacy-updated">Last updated: April 2026</p>
 
@@ -174,6 +186,7 @@
     <div style="text-align: center; margin-top: 1.5rem;">
         <a href="#" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;" class="privacy-btn">↑ Back to top</a>
     </div>
+
 
 </div>
 {% endblock %}

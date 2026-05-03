@@ -14,6 +14,36 @@
         overflow-y: auto;
     }
 
+    /*
+     * Crisis banner: left and right edges match the conversation card exactly.
+     * The card sits left of the action column inside a 600px centered layout.
+     * Centering the banner won't work — we have to LEFT-align it and derive its
+     * position from the same layout values.
+     *
+     * Values:
+     *   600px  = conversations-layout max-width
+     *   1rem   = layout side padding (each side)
+     *   36px   = action column button width
+     *   0.5rem = gap between card and action column
+     */
+    .crisis-banner {
+        align-self: flex-start;
+        width: calc(min(100%, 600px) - 2rem - 36px - 0.5rem);
+        max-width: none;
+        margin-top: 16px;
+        margin-bottom: 4px;
+        margin-left: max(1rem, calc((100% - 600px) / 2 + 1rem));
+        margin-right: 0;
+    }
+
+    @media (min-width: 768px) {
+        .crisis-banner {
+            font-size: 13px;
+            white-space: normal;
+            overflow: visible;
+        }
+    }
+
     .conversations-layout {
         max-width: 600px;
         margin: 0 auto;
@@ -63,12 +93,13 @@
         border-radius: 12px;
         text-decoration: none;
         color: var(--color-text);
-        transition: border-color 0.15s ease, box-shadow 0.15s ease;
+        transition: all 0.2s ease;
     }
 
     .conversation-card:hover {
-        border-color: var(--color-accent);
-        box-shadow: 0 2px 8px rgba(44, 36, 22, 0.06);
+        border: 1.5px solid #C9952A;
+        box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.18);
+        cursor: pointer;
         color: var(--color-text);
     }
 
