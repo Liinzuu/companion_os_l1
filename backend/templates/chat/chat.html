@@ -481,7 +481,14 @@
     if (window.visualViewport) {
         window.visualViewport.addEventListener('resize', () => {
             const chatLayout = document.querySelector('.chat-layout');
-            if (chatLayout) chatLayout.style.height = window.visualViewport.height + 'px';
+            if (chatLayout) {
+                const keyboardOpen = window.visualViewport.height < window.screen.height * 0.75;
+                if (keyboardOpen) {
+                    chatLayout.style.height = window.visualViewport.height + 'px';
+                } else {
+                    chatLayout.style.height = '';
+                }
+            }
             messageArea.scrollTop = messageArea.scrollHeight;
         });
     }
