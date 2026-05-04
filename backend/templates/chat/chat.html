@@ -478,24 +478,21 @@
 
     // iOS Safari: keyboard opens but window.innerHeight doesn't shrink — visualViewport does.
     // We resize the page-wrapper to match the actual visible area so the input stays above the keyboard.
+    // iOS Safari keyboard fix: tie height changes to focus/blur, not viewport resize.
+    // focus = keyboard opening, blur = keyboard closing. No guessing, no thresholds.
     if (window.visualViewport) {
-        let lastHeight = window.visualViewport.height;
+        input.addEventListener('focus', () => {
+            setTimeout(() => {
+                const chatLayout = document.querySelector('.chat-layout');
+                if (chatLayout) chatLayout.style.height = window.visualViewport.height + 'px';
+                input.scrollIntoView({ block: 'end', behavior: 'smooth' });
+                messageArea.scrollTop = messageArea.scrollHeight;
+            }, 300);
+        });
 
-        window.visualViewport.addEventListener('resize', () => {
+        input.addEventListener('blur', () => {
             const chatLayout = document.querySelector('.chat-layout');
-            const currentHeight = window.visualViewport.height;
-
-            if (chatLayout) {
-                chatLayout.style.height = currentHeight + 'px';
-            }
-
-            // Height increased = keyboard closed — let CSS 100dvh take over
-            if (currentHeight > lastHeight) {
-                if (chatLayout) chatLayout.style.height = '';
-            }
-
-            lastHeight = currentHeight;
-            messageArea.scrollTop = messageArea.scrollHeight;
+            if (chatLayout) chatLayout.style.height = '';
         });
     }
 
