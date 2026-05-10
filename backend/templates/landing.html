@@ -570,30 +570,28 @@
                 }
 
                 /* ── FOOTER ──
-           Multi-column layout with grouped headings.
-           Spacing and logic mirror loyalistic.com's footer.
-           CSS Grid keeps the three columns horizontal on desktop predictably —
-           flex-wrap was wrapping prematurely when the email column got long. */
+           Three columns on desktop, stacked single column on mobile.
+           No inline styles in the markup — the CSS owns the layout.
+           No !important — there is nothing to fight. */
                 .landing-footer {
                     background-color: var(--color-bg);
                     border-top: 1px solid var(--color-border);
-                    padding: 2.5rem 2rem 2rem !important;
+                    padding: 2.5rem 1.5rem 2rem;
                     text-align: center;
                 }
 
                 .footer-cols {
                     max-width: 700px;
                     margin: 0 auto;
-                    display: grid !important;
-                    grid-template-columns: repeat(3, 1fr) !important;
+                    display: grid;
+                    grid-template-columns: repeat(3, 1fr);
                     gap: 3rem;
+                    text-align: left;
                 }
 
                 .footer-col {
                     min-width: 0;
                     /* allow grid items to shrink for long content like the email */
-                    text-align: left !important;
-                    /* beats the inherited center from the footer's inline style */
                 }
 
                 .footer-col h4 {
@@ -634,29 +632,27 @@
 
                 .footer-bottom {
                     max-width: 700px;
-                    margin: 3.5rem auto 0 !important;
+                    margin: 3.5rem auto 0;
                     padding-top: 2rem;
                     border-top: 1px solid var(--color-border);
-                    text-align: center !important;
+                    text-align: center;
                 }
 
                 .footer-bottom p {
                     margin: 0;
                     font-size: 0.8rem;
                     color: var(--color-text-muted);
-                    text-align: center !important;
                 }
 
-                /* Stack columns on tablet and mobile — single column with breathing room.
-                   The desktop rule above uses !important, so the mobile override needs it too
-                   or the columns stay 3-wide on mobile and the Connect column overflows. */
+                /* Stack columns on tablet and mobile. Single column, content still
+                   left-aligned inside its column for readability. */
                 @media (max-width: 768px) {
                     .landing-footer {
                         padding: 3rem 1.5rem 2rem;
                     }
 
                     .footer-cols {
-                        grid-template-columns: 1fr !important;
+                        grid-template-columns: 1fr;
                         gap: 2rem;
                     }
 
@@ -982,34 +978,34 @@
     </section>
 
     <!-- ── FOOTER ─────────────────────────────────────────── -->
-    <!-- footer-version: grid-v3 — if you're seeing this comment in view-source, you have the latest CSS -->
-    <footer class="landing-footer" data-footer-version="grid-v5" style="padding: 2.5rem 2rem 2rem; text-align: center;">
-        <div class="footer-cols"
-            style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 3rem; max-width: 700px; margin: 0 auto; text-align: left !important;">
-            <div class="footer-col" style="text-align: left !important;">
-                <h4 style="text-align: left !important;">Help</h4>
-                <p style="text-align: left !important;">
+    <!-- All layout lives in the CSS above. No inline styles — they were fighting
+         the media query and breaking the mobile stack. -->
+    <footer class="landing-footer">
+        <div class="footer-cols">
+            <div class="footer-col">
+                <h4>Help</h4>
+                <p>
                     <a href="{% url 'privacy' %}">Privacy</a>
                 </p>
             </div>
-            <div class="footer-col" style="text-align: left !important;">
-                <h4 style="text-align: left !important;">Contact</h4>
-                <p style="text-align: left !important;">
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <p>
                     <a href="mailto:hello@getcompanionos.com">hello@getcompanionos.com</a><br>
                     Espoo, Finland
                 </p>
             </div>
-            <div class="footer-col" style="text-align: left !important;">
-                <h4 style="text-align: left !important;">Connect</h4>
-                <p style="text-align: left !important;">
+            <div class="footer-col">
+                <h4>Connect</h4>
+                <p>
                     <a href="https://github.com/LiinaSuoniemi/companion_os" target="_blank"
                         rel="noopener">GitHub</a><br>
                     <a href="https://www.linkedin.com/in/liina-suoniemi" target="_blank" rel="noopener">LinkedIn</a>
                 </p>
             </div>
         </div>
-        <div class="footer-bottom" style="max-width: 700px; margin: 3.5rem auto 0; text-align: center;">
-            <p style="text-align: center; margin: 0;">© 2026 Companion OS</p>
+        <div class="footer-bottom">
+            <p>© 2026 Companion OS</p>
         </div>
     </footer>
 
