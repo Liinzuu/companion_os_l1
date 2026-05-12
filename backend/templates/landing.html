@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Companion OS — A thinking partner for when life gets hard</title>
+    <title>Companion OS™ — A thinking partner for when life gets hard</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -712,7 +712,7 @@
     <nav class="landing-nav">
         <a href="/" class="nav-logo">
             <img src="{% static 'images/logo.png' %}" alt="Companion OS logo">
-            <span class="nav-logo-text">Companion OS</span>
+            <span class="nav-logo-text">Companion OS™</span>
         </a>
         <div class="nav-links">
             <div class="dropdown">
@@ -727,7 +727,7 @@
                     <li>
                         <hr class="dropdown-divider">
                     </li>
-                    <li><a class="dropdown-item" href="#apply">Apply for the pilot</a></li>
+                    <li><a class="dropdown-item" href="#apply">Request access</a></li>
                     <li><a class="dropdown-item" href="{% url 'accounts:partnership' %}">For organizations</a></li>
                     <li>
                         <hr class="dropdown-divider">
@@ -735,17 +735,17 @@
                     <li><a class="dropdown-item" href="{% url 'privacy' %}">Privacy Policy</a></li>
                 </ul>
             </div>
-            <a href="#apply" class="btn-apply">Apply for pilot</a>
+            <a href="#apply" class="btn-apply">Request access</a>
         </div>
     </nav>
 
     <!-- ── HERO ──────────────────────────────────────────── -->
     <section class="hero">
         <h1>A steady presence.<br>For when life gets hard.</h1>
-        <p>Companion OS is an AI tool that teaches coping skills, helps you through difficult moments, and keeps you
+        <p>Companion OS™ is an AI tool that teaches coping skills, helps you through difficult moments, and keeps you
             company. It is not therapy. It is not a diagnosis. It is something to try when you need a place to start.
         </p>
-        <a href="#apply" class="btn-apply" style="font-size:1rem; padding: 0.75rem 2rem;">Apply for the pilot</a>
+        <a href="#apply" class="btn-apply" style="font-size:1rem; padding: 0.75rem 2rem;">Request access</a>
     </section>
 
     <!-- ── WHO THIS IS FOR ───────────────────────────────── -->
@@ -907,8 +907,7 @@
                 </div>
                 <div class="pilot-detail">
                     <h3>Group size</h3>
-                    <p>Small on purpose. If this group is full, you go on the next list. Nobody is left out permanently.
-                    </p>
+                    <p>Small because I am one person. I want to read every message, follow up with each tester during the four weeks, and have a real conversation at the end. If the pilot is full, you can still reach out. I will let you know what is possible.</p>
                 </div>
                 <div class="pilot-detail">
                     <h3>What you get</h3>
@@ -926,15 +925,14 @@
     <!-- ── APPLICATION FORM ───────────────────────────────── -->
     <section class="section section-dark" id="apply">
         <div class="section-inner" style="text-align:center;">
-            <p class="section-label">Apply</p>
+            <p class="section-label">Request access</p>
             <h2 class="section-title">Tell me a little about you.</h2>
-            <p>No long forms. Just your name, email, and what brings you here. I read every application myself.</p>
+            <p>No long forms. Just your name, email, and what brings you here. I read every message myself.</p>
 
             {% if success %}
             <div class="success-box">
-                <h3>Application received.</h3>
-                <p>Thank you for applying. I will be in touch with your invite code. This may take a few days — the
-                    group is small and I want to read each application properly.</p>
+                <h3>Got it. Thanks for reaching out.</h3>
+                <p>I read every message myself, so it may take a few days to reply. When I do, you will get your invite code and clear instructions for getting in.</p>
             </div>
             {% else %}
             <div class="apply-card">
@@ -956,14 +954,14 @@
                     <div class="mb-3">
                         <label for="what_brings_you" class="form-label small fw-medium">What brings you here?</label>
                         <textarea id="what_brings_you" name="what_brings_you" class="form-control"
-                            placeholder="What are you hoping Companion OS can help with? A few sentences is enough."
+                            placeholder="Tell me what made you reach out. A few sentences is enough."
                             required></textarea>
                     </div>
                     <div class="mt-4">
                         <button type="submit" class="btn-apply"
-                            style="font-size: 1rem; padding: 0.75rem 2rem; width: 100%;">Apply for the pilot</button>
+                            style="font-size: 1rem; padding: 0.75rem 2rem; width: 100%;">Request access</button>
                     </div>
-                    <p class="form-note">By applying you agree to the <a href="{% url 'privacy' %}">Privacy Policy</a>.
+                    <p class="form-note">By submitting you agree to the <a href="{% url 'privacy' %}">Privacy Policy</a>.
                         Your information is never shared with third parties.</p>
                 </form>
             </div>
@@ -1007,7 +1005,7 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>© 2026 Companion OS</p>
+            <p>© 2026 Companion OS™</p>
         </div>
     </footer>
 

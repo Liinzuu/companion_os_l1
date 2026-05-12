@@ -135,7 +135,7 @@ class PilotApplicationView(View):
             return render(request, "landing.html", {"error": "Please fill in all fields.", "scroll_to_form": True})
 
         if PilotApplication.objects.filter(email=email).exists():
-            return render(request, "landing.html", {"error": "This email has already applied. I'll be in touch.", "scroll_to_form": True})
+            return render(request, "landing.html", {"error": "This email already reached out. I'll be in touch.", "scroll_to_form": True})
 
         PilotApplication.objects.create(name=name, email=email, what_brings_you=what_brings_you)
         return render(request, "landing.html", {"success": True})
