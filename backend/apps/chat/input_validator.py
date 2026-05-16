@@ -48,6 +48,7 @@ EVOLUTION LOG
             <|endoftext|> from other model families.
 """
 
+import base64
 import logging
 import re
 
@@ -135,6 +136,44 @@ INJECTION_SAFE_RESPONSE = (
 )
 
 
+# Base64 strings of 20+ characters. Used to detect encoded injection attempts.
+# Minimum 20 chars because shorter strings are common in normal conversation
+# (short codes, tokens, IDs). 20 chars decoded is ~15 bytes — enough to carry
+# a meaningful injection payload.
+_B64_CHUNK = re.compile(r"[A-Za-z0-9+/]{20,}={0,2}")
+
+
+def _check_b64_chunks(text: str) -> tuple[bool, str]:
+    """
+    Find base64-looking chunks in text, decode them, and run the standard
+    checks against the decoded content.
+
+    Why: an attacker can encode "ignore your instructions" in base64 to bypass
+    keyword patterns. The encoded string looks random and matches nothing.
+    Decoding it first, then checking, closes this gap.
+
+    False positive risk is low: a base64 chunk that decodes to contain
+    "ignore your instructions" is almost certainly an injection attempt.
+    """
+    for match in _B64_CHUNK.finditer(text):
+        candidate = match.group(0)
+        # base64 requires length divisible by 4 — pad if needed
+        padding = 4 - len(candidate) % 4
+        if padding != 4:
+            candidate += "=" * padding
+        try:
+            decoded = base64.b64decode(candidate).decode("utf-8", errors="ignore")
+            # Only check decoded strings with meaningful length
+            if len(decoded) < 8:
+                continue
+            for label, pattern in _CHECKS:
+                if pattern.search(decoded):
+                    return True, f"{label}_b64encoded"
+        except Exception:
+            continue
+    return False, ""
+
+
 def detect_injection(text: str) -> tuple[bool, str]:
     """
     Scan user input for known prompt injection patterns.
@@ -151,11 +190,16 @@ def detect_injection(text: str) -> tuple[bool, str]:
         if pattern.search(text):
             return True, label
 
+    # Also check for base64-encoded injection attempts
+    found, label = _check_b64_chunks(text)
+    if found:
+        return True, label
+
     return False, ""
 
 
 # ---------------------------------------------------------------
-# FUTURE ENHANCEMENT (not implemented for pilot):
+# FUTURE ENHANCEMENT:
 #
 # Semantic injection detection — some injection attempts are phrased
 # in natural language that avoids keyword patterns entirely
@@ -163,6 +207,11 @@ def detect_injection(text: str) -> tuple[bool, str]:
 # A small intent classifier or embedding similarity check against
 # known injection prompts would catch these. Worth building once
 # pilot data shows what patterns real users actually attempt.
+#
+# Base64 detection above handles single-token encoded payloads but not
+# multi-chunk encodings or other encoding schemes (hex, ROT13, Unicode
+# escapes). Extend _check_b64_chunks or add parallel checks if logs
+# show these patterns in practice.
 #
 # Threshold tuning — if logs show false positives, tighten patterns
 # before adding semantic detection. Fix the cheap layer first.
