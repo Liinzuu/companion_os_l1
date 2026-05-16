@@ -43,7 +43,7 @@ class RegisterView(View):
             form._invite.use()
             # Log the user in immediately after registering
             # so they don't have to log in again right away
-            login(request, user)
+            login(request, user, backend="django.contrib.auth.backends.ModelBackend")
             # If user consented to impact survey, show it first
             if user.consent_impact_survey:
                 return redirect("accounts:impact_survey")
