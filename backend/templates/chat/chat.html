@@ -84,7 +84,7 @@
     .message-area {
         flex: 1;
         overflow-y: auto;
-        padding: 1.5rem 1rem 8rem;
+        padding: 1.5rem 1rem 11rem;
         display: flex;
         flex-direction: column;
         gap: 1rem;
@@ -173,17 +173,9 @@
     .input-row {
         display: flex;
         gap: 0.5rem;
-        align-items: stretch;
+        align-items: flex-end;
         max-width: 700px;
         margin: 0 auto;
-    }
-
-    .mode-and-input {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        padding-bottom: 3px;
     }
 
     .message-input {
@@ -267,7 +259,6 @@
         flex-direction: column;
         gap: 0.5rem;
         align-items: center;
-        justify-content: flex-end;
         flex-shrink: 0;
     }
 
@@ -497,43 +488,41 @@
 
     <!-- Input bar -->
     <div class="input-bar">
+        <div style="text-align: center; margin-bottom: 0.75rem;">
+            <span class="mode-badge" id="modeBadge">
+            {% if conversation.active_mode == "auto" %}Listening
+            {% elif conversation.active_mode == "calm" %}With you
+            {% elif conversation.active_mode == "mindfulness" %}Breathing
+            {% elif conversation.active_mode == "steady" %}Here with you
+            {% elif conversation.active_mode == "reality_check" %}Let's look at this
+            {% elif conversation.active_mode == "focus" %}One step
+            {% elif conversation.active_mode == "planning" %}Planning
+            {% elif conversation.active_mode == "decision" %}Deciding
+            {% elif conversation.active_mode == "reflection" %}Reflecting
+            {% elif conversation.active_mode == "boundary" %}Holding ground
+            {% elif conversation.active_mode == "daily" %}Just here
+            {% elif conversation.active_mode == "study" %}Learning
+            {% elif conversation.active_mode == "read" %}Reading
+            {% elif conversation.active_mode == "listen" %}Listening
+            {% elif conversation.active_mode == "express" %}Finding words
+            {% elif conversation.active_mode == "feedback" %}Looking clearly
+            {% elif conversation.active_mode == "habit_aim" %}Building
+            {% elif conversation.active_mode == "help" %}Orienting
+            {% else %}{{ conversation.active_mode }}{% endif %}
+            </span>
+        </div>
+        <div id="msgLengthWarning" style="display:none; text-align:center; font-size:0.8rem; color:#c0392b; margin-bottom:0.4rem;"></div>
         <form method="post" class="input-row" id="chatForm">
             {% csrf_token %}
-            <div class="mode-and-input">
-                <div style="text-align: center;">
-                    <span class="mode-badge" id="modeBadge">
-                    {% if conversation.active_mode == "auto" %}Listening
-                    {% elif conversation.active_mode == "calm" %}With you
-                    {% elif conversation.active_mode == "mindfulness" %}Breathing
-                    {% elif conversation.active_mode == "steady" %}Here with you
-                    {% elif conversation.active_mode == "reality_check" %}Let's look at this
-                    {% elif conversation.active_mode == "focus" %}One step
-                    {% elif conversation.active_mode == "planning" %}Planning
-                    {% elif conversation.active_mode == "decision" %}Deciding
-                    {% elif conversation.active_mode == "reflection" %}Reflecting
-                    {% elif conversation.active_mode == "boundary" %}Holding ground
-                    {% elif conversation.active_mode == "daily" %}Just here
-                    {% elif conversation.active_mode == "study" %}Learning
-                    {% elif conversation.active_mode == "read" %}Reading
-                    {% elif conversation.active_mode == "listen" %}Listening
-                    {% elif conversation.active_mode == "express" %}Finding words
-                    {% elif conversation.active_mode == "feedback" %}Looking clearly
-                    {% elif conversation.active_mode == "habit_aim" %}Building
-                    {% elif conversation.active_mode == "help" %}Orienting
-                    {% else %}{{ conversation.active_mode }}{% endif %}
-                    </span>
-                </div>
-                <div id="msgLengthWarning" style="display:none; text-align:center; font-size:0.8rem; color:#c0392b;"></div>
-                <textarea
-                    name="message"
-                    id="messageInput"
-                    class="message-input"
-                    placeholder="What's on your mind?"
-                    rows="1"
-                    autocomplete="off"
-                    autofocus
-                ></textarea>
-            </div>
+            <textarea
+                name="message"
+                id="messageInput"
+                class="message-input"
+                placeholder="What's on your mind?"
+                rows="1"
+                autocomplete="off"
+                autofocus
+            ></textarea>
             <div class="btn-stack">
                 <button type="button" class="call-btn" id="callBtn" aria-label="Get help making a call" title="Get help making a call">
                     <!-- Phone handset icon -->
