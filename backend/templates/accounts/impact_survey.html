@@ -37,22 +37,39 @@
         font-style: italic;
     }
 
-    .survey-question {
+    .survey-grace-note {
+        font-size: 0.875rem;
+        line-height: 1.6;
+        color: var(--color-accent);
+        background-color: rgba(139, 111, 78, 0.08);
+        border: 1px solid rgba(139, 111, 78, 0.2);
+        border-radius: 8px;
+        padding: 0.625rem 0.875rem;
         margin-bottom: 1.5rem;
     }
 
-    .survey-question label {
+    .survey-question {
+        margin-bottom: 1.75rem;
+    }
+
+    .survey-question-label {
         display: block;
         font-size: 0.95rem;
         line-height: 1.6;
         color: var(--color-text);
-        margin-bottom: 0.5rem;
+        margin-bottom: 0.625rem;
+    }
+
+    .q-num {
+        font-weight: 600;
+        color: var(--color-accent);
+        margin-right: 0.35rem;
     }
 
     .scale-row {
         display: flex;
         gap: 0.25rem;
-        align-items: center;
+        align-items: flex-start;
         justify-content: space-between;
         max-width: 350px;
     }
@@ -61,10 +78,10 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 0.25rem;
+        gap: 0.2rem;
         cursor: pointer;
-        font-size: 0.75rem;
-        color: var(--color-text-muted);
+        min-width: 52px;
+        text-align: center;
     }
 
     .scale-row input[type="radio"] {
@@ -72,6 +89,21 @@
         height: 20px;
         accent-color: var(--color-accent);
         cursor: pointer;
+        flex-shrink: 0;
+    }
+
+    .scale-num {
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: var(--color-text);
+        line-height: 1;
+    }
+
+    .scale-lbl {
+        font-size: 0.7rem;
+        color: var(--color-text-muted);
+        text-align: center;
+        line-height: 1.3;
     }
 
     .survey-section-title {
@@ -201,27 +233,36 @@
     <div class="survey-intro">
         {% if is_followup %}
         <span
-            data-en="It has been about 4 weeks since you started using Companion OS. These are the same questions from your first visit. Your answers help us understand whether this tool makes a real difference in daily life."
-            data-fi="Companion OS:n käytön aloittamisesta on kulunut noin 4 viikkoa. Nämä ovat samat kysymykset kuin ensimmäisellä kerralla. Vastauksesi auttavat meitä ymmärtämään, onko Companion OS todella auttanut."
-            data-et="Companion OS-i kasutamise algusest on möödunud umbes 4 nädalat. Need on samad küsimused mis esimesel külastusel. Sinu vastused aitavad meil mõista, kas Companion OS tegi tõelise erinevuse.">
-            It has been about 4 weeks since you started using Companion OS. These are the same questions from your first visit. Your answers help us understand whether this tool makes a real difference in daily life.
+            data-en="It has been about 4 weeks since you started using Companion OS. These are the same questions from your first visit. Your answers help us understand whether Companion OS really helped you in everyday life."
+            data-fi="Companion OS:n käytön aloittamisesta on kulunut noin 4 viikkoa. Nämä ovat samat kysymykset kuin ensimmäisellä kerralla. Vastauksesi auttavat meitä ymmärtämään, onko Companion OS oikeasti auttanut sua arjessa."
+            data-et="Companion OS-i kasutamise algusest on möödunud umbes 4 nädalat. Need on samad küsimused mis esimesel külastusel. Sinu vastused aitavad meil teada saada, kas Companion OS tõesti aitas sind igapäevaelus.">
+            It has been about 4 weeks since you started using Companion OS. These are the same questions from your first visit. Your answers help us understand whether Companion OS really helped you in everyday life.
         </span>
         {% else %}
         <span
-            data-en="This short survey helps us understand whether Companion OS makes a difference in daily life. All answers are anonymised and used only for product research. This is not a clinical assessment. It takes about 2 minutes."
-            data-fi="Tämä lyhyt kysely auttaa meitä ymmärtämään, auttaako Companion OS arjessa. Kaikki vastaukset anonymisoidaan ja niitä käytetään vain tuotekehitykseen. Tämä ei ole kliininen arvio. Se kestää noin 2 minuuttia."
-            data-et="See lühike küsitlus aitab meil mõista, kas Companion OS aitab igapäevaelus või mitte. Kõik vastused on anonümiseeritud ja neid kasutatakse ainult tootearenduseks. See ei ole kliiniline hindamine. See võtab umbes 2 minutit.">
-            This short survey helps us understand whether Companion OS makes a difference in daily life. All answers are anonymised and used only for product research. This is not a clinical assessment. It takes about 2 minutes.
+            data-en="This short survey helps us understand whether Companion OS makes a difference in daily life. Your answers also help us show potential partners whether this tool is helpful, so we can bring it to more people who need it. Everything is fully anonymised and cannot be traced back to you. This is not a clinical assessment. It takes about 2 minutes."
+            data-fi="Tämä lyhyt kysely auttaa meitä ymmärtämään, auttaako Companion OS arjessa. Vastauksesi auttavat meitä myös osoittamaan potentiaalisille kumppaneille, onko tämä työkalu hyödyllinen, jotta voimme tuoda sen useammille sitä tarvitseville ihmisille. Kaikki on täysin anonymisoitua eikä vastauksia voida yhdistää sinuun. Tämä ei ole kliininen arvio. Se kestää noin 2 minuuttia."
+            data-et="See lühike küsitlus aitab meil mõista, kas Companion OS aitab igapäevaelus või mitte. Sinu vastused aitavad meil ka näidata potentsiaalsetele partneritele, kas see tööriist on kasulik, et saaksime tuua selle rohkematele inimestele, kes seda vajavad. Kõik on täielikult anonümiseeritud, vastuseid ei saa sinuga seostada. See ei ole kliiniline hindamine. See võtab umbes 2 minutit.">
+            This short survey helps us understand whether Companion OS makes a difference in daily life. Your answers also help us show potential partners whether this tool is helpful, so we can bring it to more people who need it. Everything is fully anonymised and cannot be traced back to you. This is not a clinical assessment. It takes about 2 minutes.
         </span>
         {% endif %}
     </div>
 
     {% if not is_followup %}
     <p class="survey-intro-note"
-       data-en="After 4 weeks, you will see these same questions again — that is how we measure whether Companion OS made a real difference."
-       data-fi="Samat kysymykset näytetään sinulle uudelleen neljän viikon kuluttua — niin mittaamme, onko Companion OS tehnyt todellisen eron."
-       data-et="Samad küsimused ilmuvad uuesti 4 nädala pärast — nii mõõdame, kas Companion OS tegi tõelise erinevuse.">
-        After 4 weeks, you will see these same questions again — that is how we measure whether Companion OS made a real difference.
+       data-en="After 4 weeks you will see these questions again. Please fill them in. That is how we see whether Companion OS really helped you in everyday life."
+       data-fi="Neljän viikon kuluttua näet nämä kysymykset uudelleen. Täytä ne silloin. Niin näemme, onko Companion OS oikeasti auttanut sua arjessa."
+       data-et="4 nädala pärast näed neid küsimusi uuesti. Palun täida need. Nii saame teada, kas Companion OS tõesti aitas sind igapäevaelus.">
+        After 4 weeks you will see these questions again. Please fill them in. That is how we see whether Companion OS really helped you in everyday life.
+    </p>
+    {% endif %}
+
+    {% if is_followup %}
+    <p class="survey-grace-note"
+       data-en="You have one week left to use this app before it closes."
+       data-fi="Sinulle on jäänyt vielä yksi viikko käyttää tätä sovellusta, ennen kuin se sulkeutuu."
+       data-et="Sinul on jäänud veel üks nädal, et saaksid seda äppi kasutada, enne kui see äpp läheb kinni.">
+        You have one week left to use this app before it closes.
     </p>
     {% endif %}
 
@@ -237,83 +278,88 @@
         <input type="hidden" name="survey_type" value="{{ survey_type }}">
 
         <div class="survey-question">
-            <label
+            <label class="survey-question-label">
+                <span class="q-num">1.</span><span
                 data-en="In the past few weeks, I felt able to handle difficult moments."
                 data-fi="Viimeisten viikkojen aikana olen pystynyt käsittelemään vaikeita hetkiä."
                 data-et="Viimaste nädalate jooksul olen suutnud toime tulla raskete hetkedega.">
-                In the past few weeks, I felt able to handle difficult moments.
+                In the past few weeks, I felt able to handle difficult moments.</span>
             </label>
             <div class="scale-row">
-                <label><input type="radio" name="q1" value="1" required> <span data-en="1 – Not at all" data-fi="1 – Ei lainkaan" data-et="1 – Üldse mitte">1 – Not at all</span></label>
-                <label><input type="radio" name="q1" value="2"> <span data-en="2 – A little" data-fi="2 – Vähän" data-et="2 – Veidi">2 – A little</span></label>
-                <label><input type="radio" name="q1" value="3"> <span data-en="3 – Somewhat" data-fi="3 – Jonkin verran" data-et="3 – Mõningal määral">3 – Somewhat</span></label>
-                <label><input type="radio" name="q1" value="4"> <span data-en="4 – Quite a bit" data-fi="4 – Aika paljon" data-et="4 – Üsna palju">4 – Quite a bit</span></label>
-                <label><input type="radio" name="q1" value="5"> <span data-en="5 – Very much" data-fi="5 – Erittäin paljon" data-et="5 – Väga palju">5 – Very much</span></label>
+                <label><input type="radio" name="q1" value="1" required><span class="scale-num">1</span><span class="scale-lbl" data-en="Not at all" data-fi="Ei lainkaan" data-et="Üldse mitte">Not at all</span></label>
+                <label><input type="radio" name="q1" value="2"><span class="scale-num">2</span><span class="scale-lbl" data-en="A little" data-fi="Vähän" data-et="Veidi">A little</span></label>
+                <label><input type="radio" name="q1" value="3"><span class="scale-num">3</span><span class="scale-lbl" data-en="Somewhat" data-fi="Jonkin verran" data-et="Mõningal määral">Somewhat</span></label>
+                <label><input type="radio" name="q1" value="4"><span class="scale-num">4</span><span class="scale-lbl" data-en="Quite a bit" data-fi="Aika paljon" data-et="Üsna palju">Quite a bit</span></label>
+                <label><input type="radio" name="q1" value="5"><span class="scale-num">5</span><span class="scale-lbl" data-en="Very much" data-fi="Erittäin paljon" data-et="Väga palju">Very much</span></label>
             </div>
         </div>
 
         <div class="survey-question">
-            <label
+            <label class="survey-question-label">
+                <span class="q-num">2.</span><span
                 data-en="I notice when my stress or emotions are building up before they become overwhelming."
                 data-fi="Huomaan kun stressi tai tunteet alkavat kasaantua ennen kuin ne käyvät ylivoimaisiksi."
                 data-et="Märkan, kui stress või emotsioonid hakkavad kogunema, enne kui need muutuvad üle jõu käivaks.">
-                I notice when my stress or emotions are building up before they become overwhelming.
+                I notice when my stress or emotions are building up before they become overwhelming.</span>
             </label>
             <div class="scale-row">
-                <label><input type="radio" name="q2" value="1" required> <span data-en="1 – Not at all" data-fi="1 – Ei lainkaan" data-et="1 – Üldse mitte">1 – Not at all</span></label>
-                <label><input type="radio" name="q2" value="2"> <span data-en="2 – A little" data-fi="2 – Vähän" data-et="2 – Veidi">2 – A little</span></label>
-                <label><input type="radio" name="q2" value="3"> <span data-en="3 – Somewhat" data-fi="3 – Jonkin verran" data-et="3 – Mõningal määral">3 – Somewhat</span></label>
-                <label><input type="radio" name="q2" value="4"> <span data-en="4 – Quite a bit" data-fi="4 – Aika paljon" data-et="4 – Üsna palju">4 – Quite a bit</span></label>
-                <label><input type="radio" name="q2" value="5"> <span data-en="5 – Very much" data-fi="5 – Erittäin paljon" data-et="5 – Väga palju">5 – Very much</span></label>
+                <label><input type="radio" name="q2" value="1" required><span class="scale-num">1</span><span class="scale-lbl" data-en="Not at all" data-fi="Ei lainkaan" data-et="Üldse mitte">Not at all</span></label>
+                <label><input type="radio" name="q2" value="2"><span class="scale-num">2</span><span class="scale-lbl" data-en="A little" data-fi="Vähän" data-et="Veidi">A little</span></label>
+                <label><input type="radio" name="q2" value="3"><span class="scale-num">3</span><span class="scale-lbl" data-en="Somewhat" data-fi="Jonkin verran" data-et="Mõningal määral">Somewhat</span></label>
+                <label><input type="radio" name="q2" value="4"><span class="scale-num">4</span><span class="scale-lbl" data-en="Quite a bit" data-fi="Aika paljon" data-et="Üsna palju">Quite a bit</span></label>
+                <label><input type="radio" name="q2" value="5"><span class="scale-num">5</span><span class="scale-lbl" data-en="Very much" data-fi="Erittäin paljon" data-et="Väga palju">Very much</span></label>
             </div>
         </div>
 
         <div class="survey-question">
-            <label
+            <label class="survey-question-label">
+                <span class="q-num">3.</span><span
                 data-en="When I feel stuck or overwhelmed, I have something I can try that helps."
                 data-fi="Kun olen jumissa tai ylivoimaisessa tilanteessa, minulla on jokin keino jota voin kokeilla ja joka auttaa."
                 data-et="Kui olen takerdunud või ülekoormusega olukorras, on mul midagi, mida saan proovida ja mis aitab.">
-                When I feel stuck or overwhelmed, I have something I can try that helps.
+                When I feel stuck or overwhelmed, I have something I can try that helps.</span>
             </label>
             <div class="scale-row">
-                <label><input type="radio" name="q3" value="1" required> <span data-en="1 – Not at all" data-fi="1 – Ei lainkaan" data-et="1 – Üldse mitte">1 – Not at all</span></label>
-                <label><input type="radio" name="q3" value="2"> <span data-en="2 – A little" data-fi="2 – Vähän" data-et="2 – Veidi">2 – A little</span></label>
-                <label><input type="radio" name="q3" value="3"> <span data-en="3 – Somewhat" data-fi="3 – Jonkin verran" data-et="3 – Mõningal määral">3 – Somewhat</span></label>
-                <label><input type="radio" name="q3" value="4"> <span data-en="4 – Quite a bit" data-fi="4 – Aika paljon" data-et="4 – Üsna palju">4 – Quite a bit</span></label>
-                <label><input type="radio" name="q3" value="5"> <span data-en="5 – Very much" data-fi="5 – Erittäin paljon" data-et="5 – Väga palju">5 – Very much</span></label>
+                <label><input type="radio" name="q3" value="1" required><span class="scale-num">1</span><span class="scale-lbl" data-en="Not at all" data-fi="Ei lainkaan" data-et="Üldse mitte">Not at all</span></label>
+                <label><input type="radio" name="q3" value="2"><span class="scale-num">2</span><span class="scale-lbl" data-en="A little" data-fi="Vähän" data-et="Veidi">A little</span></label>
+                <label><input type="radio" name="q3" value="3"><span class="scale-num">3</span><span class="scale-lbl" data-en="Somewhat" data-fi="Jonkin verran" data-et="Mõningal määral">Somewhat</span></label>
+                <label><input type="radio" name="q3" value="4"><span class="scale-num">4</span><span class="scale-lbl" data-en="Quite a bit" data-fi="Aika paljon" data-et="Üsna palju">Quite a bit</span></label>
+                <label><input type="radio" name="q3" value="5"><span class="scale-num">5</span><span class="scale-lbl" data-en="Very much" data-fi="Erittäin paljon" data-et="Väga palju">Very much</span></label>
             </div>
         </div>
 
         <div class="survey-question">
-            <label
+            <label class="survey-question-label">
+                <span class="q-num">4.</span><span
                 data-en="I have been able to get through my daily tasks and responsibilities."
                 data-fi="Olen pystynyt hoitamaan päivittäiset tehtäväni ja vastuuni."
                 data-et="Olen suutnud täita oma igapäevaseid ülesandeid ja kohustusi.">
-                I have been able to get through my daily tasks and responsibilities.
+                I have been able to get through my daily tasks and responsibilities.</span>
             </label>
             <div class="scale-row">
-                <label><input type="radio" name="q4" value="1" required> <span data-en="1 – With great difficulty" data-fi="1 – Todella suurella vaivalla" data-et="1 – Väga suure vaevaga">1 – With great difficulty</span></label>
-                <label><input type="radio" name="q4" value="2"> <span data-en="2 – With difficulty" data-fi="2 – Vaivalla" data-et="2 – Vaevaga">2 – With difficulty</span></label>
-                <label><input type="radio" name="q4" value="3"> <span data-en="3 – Managing somehow" data-fi="3 – Selviän joten kuten" data-et="3 – Saan hakkama kuidagi">3 – Managing somehow</span></label>
-                <label><input type="radio" name="q4" value="4"> <span data-en="4 – Fairly well" data-fi="4 – Melko hyvin" data-et="4 – Üsna hästi">4 – Fairly well</span></label>
-                <label><input type="radio" name="q4" value="5"> <span data-en="5 – With ease" data-fi="5 – Helposti" data-et="5 – Kergelt">5 – With ease</span></label>
+                <label><input type="radio" name="q4" value="1" required><span class="scale-num">1</span><span class="scale-lbl" data-en="With great difficulty" data-fi="Todella suurella vaivalla" data-et="Väga suure vaevaga">With great difficulty</span></label>
+                <label><input type="radio" name="q4" value="2"><span class="scale-num">2</span><span class="scale-lbl" data-en="With difficulty" data-fi="Vaivalla" data-et="Vaevaga">With difficulty</span></label>
+                <label><input type="radio" name="q4" value="3"><span class="scale-num">3</span><span class="scale-lbl" data-en="Managing somehow" data-fi="Selviän joten kuten" data-et="Saan hakkama kuidagi">Managing somehow</span></label>
+                <label><input type="radio" name="q4" value="4"><span class="scale-num">4</span><span class="scale-lbl" data-en="Fairly well" data-fi="Melko hyvin" data-et="Üsna hästi">Fairly well</span></label>
+                <label><input type="radio" name="q4" value="5"><span class="scale-num">5</span><span class="scale-lbl" data-en="With ease" data-fi="Helposti" data-et="Kergelt">With ease</span></label>
             </div>
         </div>
 
         {% if is_followup %}
         <div class="survey-question">
-            <label
+            <label class="survey-question-label">
+                <span class="q-num">5.</span><span
                 data-en="Overall, I feel more steady and grounded in my daily life than I did a month ago."
                 data-fi="Kaiken kaikkiaan tunnen olevani vakaampi ja tasapainoisempi arjessani kuin kuukausi sitten."
                 data-et="Üldiselt tunnen end stabiilsemana ja tasakaalustatumana kui kuu aega tagasi.">
-                Overall, I feel more steady and grounded in my daily life than I did a month ago.
+                Overall, I feel more steady and grounded in my daily life than I did a month ago.</span>
             </label>
             <div class="scale-row">
-                <label><input type="radio" name="q5" value="1" required> <span data-en="1 – Not at all" data-fi="1 – Ei lainkaan" data-et="1 – Üldse mitte">1 – Not at all</span></label>
-                <label><input type="radio" name="q5" value="2"> <span data-en="2 – A little" data-fi="2 – Vähän" data-et="2 – Veidi">2 – A little</span></label>
-                <label><input type="radio" name="q5" value="3"> <span data-en="3 – Somewhat" data-fi="3 – Jonkin verran" data-et="3 – Mõningal määral">3 – Somewhat</span></label>
-                <label><input type="radio" name="q5" value="4"> <span data-en="4 – Quite a bit" data-fi="4 – Aika paljon" data-et="4 – Üsna palju">4 – Quite a bit</span></label>
-                <label><input type="radio" name="q5" value="5"> <span data-en="5 – Very much" data-fi="5 – Erittäin paljon" data-et="5 – Väga palju">5 – Very much</span></label>
+                <label><input type="radio" name="q5" value="1" required><span class="scale-num">1</span><span class="scale-lbl" data-en="Not at all" data-fi="Ei lainkaan" data-et="Üldse mitte">Not at all</span></label>
+                <label><input type="radio" name="q5" value="2"><span class="scale-num">2</span><span class="scale-lbl" data-en="A little" data-fi="Vähän" data-et="Veidi">A little</span></label>
+                <label><input type="radio" name="q5" value="3"><span class="scale-num">3</span><span class="scale-lbl" data-en="Somewhat" data-fi="Jonkin verran" data-et="Mõningal määral">Somewhat</span></label>
+                <label><input type="radio" name="q5" value="4"><span class="scale-num">4</span><span class="scale-lbl" data-en="Quite a bit" data-fi="Aika paljon" data-et="Üsna palju">Quite a bit</span></label>
+                <label><input type="radio" name="q5" value="5"><span class="scale-num">5</span><span class="scale-lbl" data-en="Very much" data-fi="Erittäin paljon" data-et="Väga palju">Very much</span></label>
             </div>
         </div>
         {% endif %}
@@ -327,7 +373,7 @@
         </div>
 
         <div class="survey-question">
-            <label data-en="Age range" data-fi="Ikäryhmä" data-et="Vanuserühm">Age range</label>
+            <label class="survey-question-label" data-en="Age range" data-fi="Ikäryhmä" data-et="Vanuserühm">Age range</label>
             <select name="age_range" class="survey-select">
                 <option value="" data-en="Prefer not to say" data-fi="En halua kertoa" data-et="Eelistan mitte öelda">Prefer not to say</option>
                 <option value="under_18" data-en="Under 18" data-fi="Alle 18" data-et="Alla 18">Under 18</option>
@@ -340,7 +386,7 @@
         </div>
 
         <div class="survey-question">
-            <label>
+            <label class="survey-question-label">
                 <span data-en="Current situation" data-fi="Nykyinen tilanne" data-et="Praegune olukord">Current situation</span>
                 <span class="optional-tag">
                     (<span data-en="select all that apply" data-fi="valitse kaikki sopivat" data-et="vali kõik sobivad">select all that apply</span>)
@@ -354,7 +400,7 @@
         </div>
 
         <div class="survey-question">
-            <label data-en="Country" data-fi="Maa" data-et="Riik">Country</label>
+            <label class="survey-question-label" data-en="Country" data-fi="Maa" data-et="Riik">Country</label>
             <select name="country" class="survey-select" id="countrySelect" onchange="document.getElementById('countryOther').style.display = this.value === 'other' ? 'block' : 'none';">
                 <option value="" data-en="Prefer not to say" data-fi="En halua kertoa" data-et="Eelistan mitte öelda">Prefer not to say</option>
                 <option value="fi" data-en="Finland" data-fi="Suomi" data-et="Soome">Finland</option>
@@ -371,7 +417,7 @@
 
         {% if is_followup %}
         <div class="survey-question">
-            <label>
+            <label class="survey-question-label">
                 <span
                     data-en="Is there anything that has changed in your daily life since you started using Companion OS?"
                     data-fi="Onko arjessasi tapahtunut muutoksia Companion OS:n käytön aloittamisen jälkeen?"
@@ -388,7 +434,7 @@
         </div>
         {% else %}
         <div class="survey-question">
-            <label>
+            <label class="survey-question-label">
                 <span
                     data-en="What brought you to Companion OS?"
                     data-fi="Mikä toi sinut Companion OS:ään?"
