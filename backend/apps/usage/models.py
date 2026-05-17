@@ -155,7 +155,8 @@ class UsageEvent(models.Model):
 
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL,
-        on_delete=models.CASCADE,
+        on_delete=models.SET_NULL,
+        null=True,
         related_name="usage_events",
     )
     event_type = models.CharField(max_length=30, choices=EVENT_CHOICES)

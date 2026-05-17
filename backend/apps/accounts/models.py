@@ -145,7 +145,8 @@ class ImpactSurvey(models.Model):
 
     user = models.ForeignKey(
         "accounts.User",
-        on_delete=models.CASCADE,
+        on_delete=models.SET_NULL,
+        null=True,
         related_name="impact_surveys",
     )
     survey_type = models.CharField(max_length=10, choices=SURVEY_TYPE_CHOICES)
