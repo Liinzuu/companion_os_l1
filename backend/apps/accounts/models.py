@@ -194,7 +194,8 @@ class ImpactSurvey(models.Model):
         ordering = ["-created_at"]
 
     def __str__(self):
-        return f"{self.user.username} — {self.survey_type} ({self.created_at:%Y-%m-%d})"
+        username = self.user.username if self.user else "deleted"
+        return f"{username} — {self.survey_type} ({self.created_at:%Y-%m-%d})"
 
 
 class PilotApplication(models.Model):

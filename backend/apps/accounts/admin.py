@@ -25,9 +25,23 @@ class InviteCodeAdmin(admin.ModelAdmin):
 
 @admin.register(ImpactSurvey)
 class ImpactSurveyAdmin(admin.ModelAdmin):
-    list_display = ("user", "survey_type", "handle_difficult_moments", "notice_stress_building", "have_something_to_try", "get_through_daily_tasks", "created_at")
+    list_display = ("user", "survey_type", "handle_difficult_moments", "notice_stress_building", "have_something_to_try", "get_through_daily_tasks", "age_range", "situation_display", "country", "created_at")
     list_filter = ("survey_type",)
     readonly_fields = ("created_at",)
+
+    _SITUATION_LABELS = {
+        "working_ft": "Working full time",
+        "working_pt": "Working part time",
+        "studying_ft": "Studying full time",
+        "studying_pt": "Studying part time",
+        "parent": "Parent or caregiver",
+    }
+
+    @admin.display(description="Situation")
+    def situation_display(self, obj):
+        if not obj.situation:
+            return "—"
+        return ", ".join(self._SITUATION_LABELS.get(s, s) for s in obj.situation)
 
 
 @admin.register(PilotApplication)

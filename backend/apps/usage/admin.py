@@ -31,7 +31,7 @@ class UsageEventAdmin(admin.ModelAdmin):
     Only contains events for users who consented to tracking.
     """
 
-    list_display = ["user", "event_type", "created_at"]
+    list_display = ["user", "event_type", "mode", "token_count", "created_at"]
     list_filter = ["event_type", "created_at"]
     search_fields = ["user__username"]
-    readonly_fields = ["user", "event_type", "created_at"]
+    readonly_fields = ["user", "event_type", "mode", "token_count", "created_at"]
