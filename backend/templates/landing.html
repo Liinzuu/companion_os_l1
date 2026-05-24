@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Companion OS™ — {% if lang == 'fi' %}Tuki silloin kun elämä painaa{% elif lang == 'et' %}Tugi siis, kui elu läheb raskeks{% else %}A thinking partner for when life gets hard{% endif %}</title>
+    <title>Companion OS. A thinking partner for when life gets hard</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -187,24 +187,24 @@
             padding: 5rem 1.5rem 4rem;
         }
 
-        /* Brand name — sits above the tagline, wordmark scale */
+        /* Brand name — H1, the largest element in the hero */
         .hero-brand {
             font-family: var(--font-heading);
-            font-size: 1.5rem;
+            font-size: clamp(2.4rem, 6vw, 4rem);
             font-weight: 400;
             color: #F5F0E8;
             letter-spacing: 0.04em;
             margin: 0;
-            line-height: 1.2;
+            line-height: 1.1;
         }
 
-        /* Tagline — the big descriptive headline */
+        /* Tagline — sits below the brand, smaller and lighter */
         .hero h2.hero-tagline {
-            font-size: clamp(2rem, 5vw, 3.2rem);
+            font-size: clamp(1.1rem, 2.5vw, 1.5rem);
             font-weight: 300;
-            color: #F5F0E8;
+            color: #C8BFA8;
             margin-bottom: 1.25rem;
-            line-height: 1.2;
+            line-height: 1.4;
         }
 
         .hero p {
@@ -249,7 +249,6 @@
             color: #7A7060;
         }
 
-        /* Apply section uses the mode card background — easier on the eyes than #201C16 */
         #apply {
             background-color: #2A241C;
         }
@@ -380,352 +379,360 @@
             content: "→ ";
         }
 
-                /* ── TRANSPARENCY ────────────────────── */
-                .two-col {
-                    display: grid;
-                    grid-template-columns: 1fr 1fr;
-                    gap: 2rem;
-                    margin-top: 2rem;
-                }
+        /* ── TRANSPARENCY ────────────────────── */
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
 
-                @media (max-width: 600px) {
-                    .two-col {
-                        grid-template-columns: 1fr;
-                    }
+        @media (max-width: 600px) {
+            .two-col {
+                grid-template-columns: 1fr;
+            }
 
-                    .nav-links .hide-mobile {
-                        display: none;
-                    }
+            .nav-links .hide-mobile {
+                display: none;
+            }
 
-                    /* On small phones the "Companion OS" text was crowding the
-                       Menu dropdown button. Hide the text, keep the logo icon.
-                       The icon alone is recognisable and gives the dropdown room. */
-                    .nav-logo-text {
-                        display: none;
-                    }
-                }
+            .nav-logo-text {
+                display: none;
+            }
+        }
 
-                .transparency-block h3 {
-                    font-size: 1rem;
-                    font-weight: 500;
-                    letter-spacing: 0.04em;
-                    margin-bottom: 0.75rem;
-                    color: var(--color-text);
-                }
+        .transparency-block h3 {
+            font-size: 1rem;
+            font-weight: 500;
+            letter-spacing: 0.04em;
+            margin-bottom: 0.75rem;
+            color: var(--color-text);
+        }
 
-                .transparency-block ul {
-                    list-style: none;
-                    padding: 0;
-                    margin: 0;
-                }
+        .transparency-block ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
 
-                .transparency-block ul li {
-                    font-size: 0.9rem;
-                    color: var(--color-text-muted);
-                    padding: 0.35rem 0;
-                    padding-left: 1.25rem;
-                    position: relative;
-                }
+        .transparency-block ul li {
+            font-size: 0.9rem;
+            color: var(--color-text-muted);
+            padding: 0.35rem 0;
+            padding-left: 1.25rem;
+            position: relative;
+        }
 
-                .transparency-block.collects ul li::before {
-                    content: "✓";
-                    position: absolute;
-                    left: 0;
-                    color: var(--color-accent);
-                    font-size: 0.8rem;
-                }
+        .transparency-block.collects ul li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--color-accent);
+            font-size: 0.8rem;
+        }
 
-                .transparency-block.never ul li::before {
-                    content: "✗";
-                    position: absolute;
-                    left: 0;
-                    color: #888;
-                    font-size: 0.8rem;
-                }
+        .transparency-block.never ul li::before {
+            content: "✗";
+            position: absolute;
+            left: 0;
+            color: #888;
+            font-size: 0.8rem;
+        }
 
-                /* ── SURVEY SECTION ──────────────────── */
-                .survey-box {
-                    background-color: var(--color-bg);
-                    border: 1px solid var(--color-border);
-                    border-radius: var(--radius);
-                    padding: 2rem;
-                    margin-top: 2rem;
-                }
+        /* ── SURVEY SECTION ──────────────────── */
+        .survey-box {
+            background-color: var(--color-bg);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius);
+            padding: 2rem;
+            margin-top: 2rem;
+        }
 
-                /* ── PILOT DETAILS ───────────────────── */
-                .pilot-detail-grid {
-                    display: grid;
-                    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-                    gap: 1.5rem;
-                    margin-top: 2rem;
-                }
+        .survey-questions {
+            list-style: none;
+            padding: 0;
+            margin: 1rem 0 0;
+        }
 
-                .pilot-detail {
-                    border-left: 2px solid var(--color-accent);
-                    padding-left: 1rem;
-                }
+        .survey-questions li {
+            padding: 0.6rem 0;
+            border-bottom: 1px solid var(--color-border);
+            padding-left: 1.75rem;
+            position: relative;
+            color: var(--color-text-muted);
+            font-size: 0.95rem;
+        }
 
-                .pilot-detail h3 {
-                    font-size: 1rem;
-                    font-weight: 500;
-                    margin-bottom: 0.4rem;
-                }
+        .survey-questions li:last-child {
+            border-bottom: none;
+        }
 
-                .pilot-detail p {
-                    font-size: 0.9rem;
-                    color: var(--color-text-muted);
-                    margin: 0;
-                }
+        .survey-questions li::before {
+            content: attr(data-n);
+            position: absolute;
+            left: 0;
+            color: var(--color-accent);
+            font-family: var(--font-heading);
+            font-size: 1rem;
+        }
 
-                /* ── APPLICATION FORM ────────────────── */
-                /* form-control mirrors base.html exactly — same input style as the registration form. */
-                .form-control {
-                    background-color: #FDFAF6;
-                    border: 1px solid #C8C0B0;
-                    color: #1A1A1A;
-                    border-radius: 8px;
-                    padding: 0.625rem 0.875rem;
-                    font-family: var(--font-body);
-                    font-size: 1rem;
-                }
+        /* ── PILOT DETAILS ───────────────────── */
+        .pilot-detail-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
 
-                .form-control:focus,
-                .form-control:focus-visible {
-                    outline: 0;
-                    background-color: #FDFAF6;
-                    border-color: var(--color-accent);
-                    color: #1A1A1A;
-                    box-shadow: 0 0 0 3px rgba(201, 149, 42, 0.18);
-                }
+        .pilot-detail {
+            border-left: 2px solid var(--color-accent);
+            padding-left: 1rem;
+        }
 
-                textarea.form-control {
-                    min-height: 120px;
-                    resize: vertical;
-                }
+        .pilot-detail h3 {
+            font-size: 1rem;
+            font-weight: 500;
+            margin-bottom: 0.4rem;
+        }
 
-                .form-control:-webkit-autofill,
-                .form-control:-webkit-autofill:hover,
-                .form-control:-webkit-autofill:focus {
-                    -webkit-box-shadow: 0 0 0px 1000px #FDFAF6 inset;
-                    -webkit-text-fill-color: #1A1A1A;
-                }
+        .pilot-detail p {
+            font-size: 0.9rem;
+            color: var(--color-text-muted);
+            margin: 0;
+        }
 
-                /* Match base.html exactly so this button reads identical to the registration page button. */
-                .btn-primary-warm {
-                    background-color: var(--color-accent);
-                    border-color: var(--color-accent);
-                    color: #1A1A1A;
-                    font-family: var(--font-body);
-                    font-weight: 500;
-                    letter-spacing: 0.08em;
-                    border-radius: 8px;
-                    padding: 0.625rem 1.25rem;
-                    font-size: 1rem;
-                    box-shadow: 0 2px 8px rgba(184, 134, 11, 0.3);
-                    transition: background-color 0.15s ease, box-shadow 0.15s ease;
-                }
+        /* ── APPLICATION FORM ────────────────── */
+        .form-control {
+            background-color: #FDFAF6;
+            border: 1px solid #C8C0B0;
+            color: #1A1A1A;
+            border-radius: 8px;
+            padding: 0.625rem 0.875rem;
+            font-family: var(--font-body);
+            font-size: 1rem;
+        }
 
-                .btn-primary-warm:hover,
-                .btn-primary-warm:focus {
-                    background-color: #D4A820;
-                    border-color: #D4A820;
-                    color: #1A1A1A;
-                    text-decoration: none;
-                }
+        .form-control:focus,
+        .form-control:focus-visible {
+            outline: 0;
+            background-color: #FDFAF6;
+            border-color: var(--color-accent);
+            color: #1A1A1A;
+            box-shadow: 0 0 0 3px rgba(201, 149, 42, 0.18);
+        }
 
-                .apply-card {
-                    background-color: var(--color-surface);
-                    border: 1px solid var(--color-border);
-                    border-radius: var(--radius);
-                    box-shadow: 0 4px 24px rgba(26, 20, 10, 0.08);
-                    max-width: 560px;
-                    margin: 2rem auto 0;
-                    padding: 2rem;
-                    text-align: left;
-                }
+        textarea.form-control {
+            min-height: 120px;
+            resize: vertical;
+        }
 
-                /* Labels inside the light apply-card must override the dark-section cascade */
-                .apply-card label,
-                .apply-card .form-label {
-                    color: var(--color-text);
-                }
+        .form-control:-webkit-autofill,
+        .form-control:-webkit-autofill:hover,
+        .form-control:-webkit-autofill:focus {
+            -webkit-box-shadow: 0 0 0px 1000px #FDFAF6 inset;
+            -webkit-text-fill-color: #1A1A1A;
+        }
 
-                .apply-card .form-note {
-                    font-size: 0.8rem;
-                    color: var(--color-text-muted);
-                    text-align: center;
-                    margin-top: 1rem;
-                    margin-bottom: 0;
-                }
+        .btn-primary-warm {
+            background-color: var(--color-accent);
+            border-color: var(--color-accent);
+            color: #1A1A1A;
+            font-family: var(--font-body);
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            border-radius: 8px;
+            padding: 0.625rem 1.25rem;
+            font-size: 1rem;
+            box-shadow: 0 2px 8px rgba(184, 134, 11, 0.3);
+            transition: background-color 0.15s ease, box-shadow 0.15s ease;
+        }
 
-                .apply-card .error-msg {
-                    background-color: rgba(192, 57, 43, 0.08);
-                    border: 1px solid rgba(192, 57, 43, 0.3);
-                    border-radius: 8px;
-                    color: #b03020;
-                    padding: 0.75rem 1rem;
-                    font-size: 0.9rem;
-                    margin-bottom: 1rem;
-                }
+        .btn-primary-warm:hover,
+        .btn-primary-warm:focus {
+            background-color: #D4A820;
+            border-color: #D4A820;
+            color: #1A1A1A;
+            text-decoration: none;
+        }
 
-                .success-box {
-                    max-width: 560px;
-                    margin: 2rem auto;
-                    background-color: var(--color-surface);
-                    border: 1px solid var(--color-accent);
-                    border-radius: var(--radius);
-                    padding: 2rem;
-                    text-align: center;
-                }
+        .apply-card {
+            background-color: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius);
+            box-shadow: 0 4px 24px rgba(26, 20, 10, 0.08);
+            max-width: 560px;
+            margin: 2rem auto 0;
+            padding: 2rem;
+            text-align: left;
+        }
 
-                .success-box h3 {
-                    color: var(--color-accent);
-                    font-size: 1.4rem;
-                    margin-bottom: 0.75rem;
-                }
+        .apply-card label,
+        .apply-card .form-label {
+            color: var(--color-text);
+        }
 
-                .success-box p {
-                    color: var(--color-text-muted);
-                    margin: 0;
-                }
+        .apply-card .form-note {
+            font-size: 0.8rem;
+            color: var(--color-text-muted);
+            text-align: center;
+            margin-top: 1rem;
+            margin-bottom: 0;
+        }
 
-                /* ── FOOTER ──
-           Three columns on desktop, stacked single column on mobile.
-           No inline styles in the markup — the CSS owns the layout.
-           No !important — there is nothing to fight. */
-                .landing-footer {
-                    background-color: var(--color-bg);
-                    border-top: 1px solid var(--color-border);
-                    padding: 2.5rem 1.5rem 2rem;
-                    text-align: center;
-                }
+        .apply-card .error-msg {
+            background-color: rgba(192, 57, 43, 0.08);
+            border: 1px solid rgba(192, 57, 43, 0.3);
+            border-radius: 8px;
+            color: #b03020;
+            padding: 0.75rem 1rem;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
 
-                .footer-cols {
-                    max-width: 700px;
-                    margin: 0 auto;
-                    display: grid;
-                    grid-template-columns: repeat(3, 1fr);
-                    gap: 3rem;
-                    text-align: left;
-                }
+        .success-box {
+            max-width: 560px;
+            margin: 2rem auto;
+            background-color: var(--color-surface);
+            border: 1px solid var(--color-accent);
+            border-radius: var(--radius);
+            padding: 2rem;
+            text-align: center;
+        }
 
-                .footer-col {
-                    min-width: 0;
-                    /* allow grid items to shrink for long content like the email */
-                }
+        .success-box h3 {
+            color: var(--color-accent);
+            font-size: 1.4rem;
+            margin-bottom: 0.75rem;
+        }
 
-                .footer-col h4 {
-                    font-family: var(--font-body);
-                    font-size: 0.8rem;
-                    font-weight: 600;
-                    color: var(--color-text);
-                    text-transform: uppercase;
-                    letter-spacing: 0.08em;
-                    margin: 0 0 1.25rem 0;
-                }
+        .success-box p {
+            color: var(--color-text-muted);
+            margin: 0;
+        }
 
-                .footer-col ul {
-                    list-style: none;
-                    padding: 0;
-                    margin: 0;
-                }
+        /* ── FOOTER ──────────────────────────── */
+        .landing-footer {
+            background-color: var(--color-bg);
+            border-top: 1px solid var(--color-border);
+            padding: 2.5rem 1.5rem 2rem;
+            text-align: center;
+        }
 
-                .footer-col li {
-                    margin-bottom: 0.5rem;
-                }
+        .footer-cols {
+            max-width: 700px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+            text-align: left;
+        }
 
-                .footer-col a,
-                .footer-col p {
-                    font-size: 0.9rem;
-                    color: var(--color-text-muted);
-                    text-decoration: none;
-                    line-height: 1.7;
-                    margin: 0;
-                    overflow-wrap: break-word;
-                    /* long email wraps inside its column instead of overflowing */
-                }
+        .footer-col {
+            min-width: 0;
+        }
 
-                .footer-col a:hover {
-                    color: var(--color-accent);
-                    text-decoration: none;
-                }
+        .footer-col h4 {
+            font-family: var(--font-body);
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--color-text);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin: 0 0 1.25rem 0;
+        }
 
-                .footer-bottom {
-                    max-width: 700px;
-                    margin: 3.5rem auto 0;
-                    padding-top: 2rem;
-                    border-top: 1px solid var(--color-border);
-                    text-align: center;
-                }
+        .footer-col ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
 
-                .footer-bottom p {
-                    margin: 0;
-                    font-size: 0.8rem;
-                    color: var(--color-text-muted);
-                }
+        .footer-col li {
+            margin-bottom: 0.5rem;
+        }
 
-                /* Stack columns on tablet and mobile. Single column, content still
-                   left-aligned inside its column for readability. */
-                @media (max-width: 768px) {
-                    .landing-footer {
-                        padding: 3rem 1.5rem 2rem;
-                    }
+        .footer-col a,
+        .footer-col p {
+            font-size: 0.9rem;
+            color: var(--color-text-muted);
+            text-decoration: none;
+            line-height: 1.7;
+            margin: 0;
+            overflow-wrap: break-word;
+        }
 
-                    .footer-cols {
-                        grid-template-columns: 1fr;
-                        gap: 2rem;
-                    }
+        .footer-col a:hover {
+            color: var(--color-accent);
+            text-decoration: none;
+        }
 
-                    .footer-bottom {
-                        margin-top: 2.5rem;
-                    }
-                }
+        .footer-bottom {
+            max-width: 700px;
+            margin: 3.5rem auto 0;
+            padding-top: 2rem;
+            border-top: 1px solid var(--color-border);
+            text-align: center;
+        }
 
-                /* ── DIVIDER ─────────────────────────── */
-                .gold-divider {
-                    width: 48px;
-                    height: 1px;
-                    background-color: var(--color-accent);
-                    margin: 1.5rem 0;
-                }
+        .footer-bottom p {
+            margin: 0;
+            font-size: 0.8rem;
+            color: var(--color-text-muted);
+        }
 
-                /* ── BACK TO TOP ──
-           Sits inside the dark apply section after the apply-card.
-           3rem space above the button (clear separation from privacy disclaimer),
-           1.5rem below (smaller gap before the section ends and the footer starts). */
-                .back-to-top-row {
-                    text-align: center;
-                    padding: 3rem 1rem 1.5rem !important;
-                }
+        @media (max-width: 768px) {
+            .landing-footer {
+                padding: 3rem 1.5rem 2rem;
+            }
 
-                /* Cookie consent dismiss button — same gold glow as back-to-top on hover */
-                #cookie-ok:hover {
-                    box-shadow: 0 0 14px rgba(201, 149, 42, 0.75), 0 0 28px rgba(201, 149, 42, 0.5);
-                }
+            .footer-cols {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
 
-                /* Gold ghost button on dark background — clearly clickable, not a text link. */
-                .back-to-top-btn {
-                    display: inline-block !important;
-                    padding: 0.5rem 1.5rem !important;
-                    font-size: 0.85rem;
-                    font-weight: 500;
-                    letter-spacing: 0.04em;
-                    color: #C9952A !important;
-                    text-decoration: none !important;
-                    background-color: transparent !important;
-                    border: 1.5px solid #C9952A !important;
-                    border-radius: 8px !important;
-                    transition: box-shadow 0.25s ease;
-                    cursor: pointer;
-                }
+            .footer-bottom {
+                margin-top: 2.5rem;
+            }
+        }
 
-                /* Hover: warm gold glow around the edges. Same color, same transparent background.
-           Two layered shadows — a tighter inner one and a softer outer one — give the glow depth without bleeding too far. */
-                .back-to-top-btn:hover,
-                a.back-to-top-btn:hover {
-                    box-shadow: 0 0 14px rgba(201, 149, 42, 0.75), 0 0 28px rgba(201, 149, 42, 0.5) !important;
-                    text-decoration: none !important;
-                }
+        /* ── DIVIDER ─────────────────────────── */
+        .gold-divider {
+            width: 48px;
+            height: 1px;
+            background-color: var(--color-accent);
+            margin: 1.5rem 0;
+        }
+
+        /* ── BACK TO TOP ─────────────────────── */
+        .back-to-top-row {
+            text-align: center;
+            padding: 3rem 1rem 1.5rem !important;
+        }
+
+        #cookie-ok:hover {
+            box-shadow: 0 0 14px rgba(201, 149, 42, 0.75), 0 0 28px rgba(201, 149, 42, 0.5);
+        }
+
+        .back-to-top-btn {
+            display: inline-block !important;
+            padding: 0.5rem 1.5rem !important;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.04em;
+            color: #C9952A !important;
+            text-decoration: none !important;
+            background-color: transparent !important;
+            border: 1.5px solid #C9952A !important;
+            border-radius: 8px !important;
+            transition: box-shadow 0.25s ease;
+            cursor: pointer;
+        }
+
+        .back-to-top-btn:hover,
+        a.back-to-top-btn:hover {
+            box-shadow: 0 0 14px rgba(201, 149, 42, 0.75), 0 0 28px rgba(201, 149, 42, 0.5) !important;
+            text-decoration: none !important;
+        }
     </style>
 </head>
 
@@ -735,96 +742,42 @@
     <nav class="landing-nav">
         <a href="/" class="nav-logo">
             <img src="{% static 'images/logo.png' %}" alt="Companion OS logo">
-            <span class="nav-logo-text">Companion OS™</span>
+            <span class="nav-logo-text">Companion OS</span>
         </a>
         <div class="nav-links">
-            <!-- Language switcher -->
-            <div style="display:flex; gap:0.25rem; font-size:0.8rem;">
-                <a href="{% url 'accounts:set_language' %}?lang=en&next=/" style="color:{% if lang == 'en' %}var(--color-accent){% else %}var(--color-text-muted){% endif %}; font-weight:{% if lang == 'en' %}500{% else %}400{% endif %}; text-decoration:none; padding:0.2rem 0.35rem; border-radius:4px;">EN</a>
-                <a href="{% url 'accounts:set_language' %}?lang=fi&next=/" style="color:{% if lang == 'fi' %}var(--color-accent){% else %}var(--color-text-muted){% endif %}; font-weight:{% if lang == 'fi' %}500{% else %}400{% endif %}; text-decoration:none; padding:0.2rem 0.35rem; border-radius:4px;">FI</a>
-                <a href="{% url 'accounts:set_language' %}?lang=et&next=/" style="color:{% if lang == 'et' %}var(--color-accent){% else %}var(--color-text-muted){% endif %}; font-weight:{% if lang == 'et' %}500{% else %}400{% endif %}; text-decoration:none; padding:0.2rem 0.35rem; border-radius:4px;">ET</a>
-            </div>
             <div class="dropdown">
                 <button class="btn-nav-menu dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                    aria-expanded="false">
-                    {% if lang == 'fi' %}Valikko{% elif lang == 'et' %}Menüü{% else %}Menu{% endif %}
-                </button>
+                    aria-expanded="false">Menu</button>
                 <ul class="dropdown-menu dropdown-menu-end">
-                    <li><a class="dropdown-item" href="/">{% if lang == 'fi' %}Etusivu{% elif lang == 'et' %}Avaleht{% else %}Home{% endif %}</a></li>
-                    <li><a class="dropdown-item" href="/accounts/login/">{% if lang == 'fi' %}Kirjaudu sisään{% elif lang == 'et' %}Logi sisse{% else %}Log in{% endif %}</a></li>
-                    <li><a class="dropdown-item" href="/accounts/register/">{% if lang == 'fi' %}Rekisteröidy{% elif lang == 'et' %}Registreeru{% else %}Register{% endif %}</a></li>
-                    <li>
-                        <hr class="dropdown-divider">
-                    </li>
-                    <li><a class="dropdown-item" href="#apply">{% if lang == 'fi' %}Pyydä käyttöoikeutta{% elif lang == 'et' %}Taotle juurdepääsu{% else %}Request access{% endif %}</a></li>
-                    <li><a class="dropdown-item" href="{% url 'accounts:partnership' %}">{% if lang == 'fi' %}Organisaatioille{% elif lang == 'et' %}Organisatsioonidele{% else %}For organizations{% endif %}</a></li>
-                    <li>
-                        <hr class="dropdown-divider">
-                    </li>
-                    <li><a class="dropdown-item" href="{% url 'privacy' %}">{% if lang == 'fi' %}Tietosuojaseloste{% elif lang == 'et' %}Privaatsuspoliitika{% else %}Privacy Policy{% endif %}</a></li>
+                    <li><a class="dropdown-item" href="/accounts/login/">Log in</a></li>
+                    <li><a class="dropdown-item" href="/accounts/register/">Register</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="#apply">Request access</a></li>
+                    <li><a class="dropdown-item" href="{% url 'accounts:partnership' %}">Partner with us</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="{% url 'privacy' %}">Privacy Notice</a></li>
                 </ul>
             </div>
-            <a href="#apply" class="btn-apply">{% if lang == 'fi' %}Pyydä pääsyä{% elif lang == 'et' %}Taotle pääsu{% else %}Request access{% endif %}</a>
+            <a href="#apply" class="btn-apply">Request access</a>
         </div>
     </nav>
 
     <!-- ── HERO ──────────────────────────────────────────── -->
     <section class="hero">
-        <div style="display:flex; align-items:center; justify-content:center; gap:0.75rem; margin-bottom:1.75rem;">
+        <div style="display:flex; align-items:center; justify-content:center; gap:0.75rem; margin-bottom:1.25rem;">
             <img src="{% static 'images/logo.png' %}" alt="" style="width:44px; height:44px; object-fit:contain; opacity:0.9;">
             <h1 class="hero-brand">Companion OS™</h1>
         </div>
-        {% if lang == 'fi' %}
-        <h2 class="hero-tagline">Tasainen tuki.<br>Silloin kun elämä painaa.</h2>
-        <p>Companion OS™ on tekoälytyökalu, joka opettaa selviytymiskeinoja, auttaa vaikeiden hetkien läpi ja pitää seuraa. Se ei ole terapia. Se ei ole diagnoosi. Se on jotain kokeiltavaa, kun tarvitset paikan aloittaa.</p>
-        <a href="#apply" class="btn-apply" style="font-size:1rem; padding: 0.75rem 2rem;">Pyydä käyttöoikeutta</a>
-        {% elif lang == 'et' %}
-        <h2 class="hero-tagline">Stabiilne tugi.<br>Siis, kui elu läheb raskeks.</h2>
-        <p>Companion OS™ on tehisintellekti tööriist, mis õpetab toimetulekuoskusi, aitab sul raskeid hetki läbida ja hoiab sulle seltsi. See pole teraapia. See pole diagnoos. See on midagi proovida, kui vajad kohta, kust alustada.</p>
-        <a href="#apply" class="btn-apply" style="font-size:1rem; padding: 0.75rem 2rem;">Taotle juurdepääsu</a>
-        {% else %}
         <h2 class="hero-tagline">A steady presence.<br>For when life gets hard.</h2>
         <p>Companion OS™ is an AI tool that teaches coping skills, helps you through difficult moments, and keeps you
             company. It is not therapy. It is not a diagnosis. It is something to try when you need a place to start.
         </p>
         <a href="#apply" class="btn-apply" style="font-size:1rem; padding: 0.75rem 2rem;">Request access</a>
-        {% endif %}
     </section>
 
     <!-- ── WHO THIS IS FOR ───────────────────────────────── -->
     <section class="section">
         <div class="section-inner">
-            {% if lang == 'fi' %}
-            <p class="section-label">Kenelle se on</p>
-            <h2 class="section-title">Rakennettu ihmisille, joiden aivot toimivat eri tavalla paineen alla.</h2>
-            <p style="color: var(--color-text-muted);">Companion OS on suunniteltu ihmisille, joilla ei ole aina ollut oikeita välineitä käsitellä sisällä tapahtuvaa. Niitä on paljon.</p>
-            <ul class="for-who-list">
-                <li>Ihmiset, joilla on vaikea keskittyä, aloittaa tehtäviä tai pysyä raiteilla</li>
-                <li>Ihmiset, jotka hallitsevat ahdistusta, ylikuormitusta tai tunnesäätelyongelmia</li>
-                <li>Päihdekuntoutujat ja traumasta tai vaikeasta ajanjaksosta toipuvat</li>
-                <li>Aivovamman saaneet ja veteraanit, jotka rakentavat arkeaan uudelleen</li>
-                <li>Teini-ikäiset, jotka navigoivat vaikeissa tilanteissa ilman riittävää tukea</li>
-                <li>Yksin asuvat ikäihmiset, jotka tarvitsevat rauhallisen ja luotettavan kumppanin</li>
-                <li>Kaikki, jotka tarvitsevat jonkin paikan aloittaa silloin kun tuntuu jumittuneelta</li>
-            </ul>
-            <div class="gold-divider"></div>
-            <p style="font-size:0.9rem; color: var(--color-text-muted);">Companion OS ei diagnosoi, ei kirjoita reseptejä eikä korvaa ammattiapua. Se opettaa taitoja ja pitää seuraa.</p>
-            {% elif lang == 'et' %}
-            <p class="section-label">Kellele see on</p>
-            <h2 class="section-title">Loodud inimestele, kelle aju töötab surve all teisiti.</h2>
-            <p style="color: var(--color-text-muted);">Companion OS on loodud inimestele, kellel pole alati olnud õigeid vahendeid oma sisemise seisundiga toimetulemiseks. Neid on palju.</p>
-            <ul class="for-who-list">
-                <li>Inimesed, kellel on raske keskenduda, ülesandeid alustada või raja peal püsida</li>
-                <li>Inimesed, kes haldavad ärevust, ülekoormust või emotsionaalset düsregulatsiooni</li>
-                <li>Inimesed, kes taastuvad sõltuvusest, traumast või raskest perioodist</li>
-                <li>Ajutrauma ellujäänud ja veteranid, kes taasloovad oma igapäevaelu</li>
-                <li>Teismelised, kes navigeerivad raskel ajal ilma piisava toeta</li>
-                <li>Üksi elavad eakad inimesed, kes vajavad rahulikku ja usaldusväärset kohalolekut</li>
-                <li>Kõik, kes vajavad kohta, kust alustada, kui tunnevad end kinni jäänud olevat</li>
-            </ul>
-            <div class="gold-divider"></div>
-            <p style="font-size:0.9rem; color: var(--color-text-muted);">Companion OS ei diagnoosi haigusi, ei kirjuta retsepte ega asenda professionaalset abi. See õpetab oskusi ja hoiab seltsi.</p>
-            {% else %}
             <p class="section-label">Who it is for</p>
             <h2 class="section-title">Built for people whose brains work differently under pressure.</h2>
             <p style="color: var(--color-text-muted);">Companion OS was designed for people who have not always had the
@@ -841,54 +794,12 @@
             <div class="gold-divider"></div>
             <p style="font-size:0.9rem; color: var(--color-text-muted);">Companion OS does not diagnose conditions,
                 prescribe treatment, or replace professional help. It teaches skills and keeps you company.</p>
-            {% endif %}
         </div>
     </section>
 
     <!-- ── HOW IT WORKS ──────────────────────────────────── -->
     <section class="section section-alt">
         <div class="section-inner">
-            {% if lang == 'fi' %}
-            <p class="section-label">Miten se toimii</p>
-            <h2 class="section-title">Ei ohjeita tarvita. Sano vain mitä tarvitset.</h2>
-            <div class="steps">
-                <div class="step">
-                    <div class="step-number">1</div>
-                    <h3>Rekisteröidy</h3>
-                    <p>Käytä kutsukoodiasi tilin luomiseen. Vie kaksi minuuttia.</p>
-                </div>
-                <div class="step">
-                    <div class="step-number">2</div>
-                    <h3>Kerro Companionille mitä tapahtuu</h3>
-                    <p>Suomeksi, englanniksi tai viroksi. Missä muodossa tahansa. Yksi lause riittää.</p>
-                </div>
-                <div class="step">
-                    <div class="step-number">3</div>
-                    <h3>Käykää läpi se yhdessä</h3>
-                    <p>Yksi askel kerrallaan. Omaan tahtiisi. Ilman tuomitsemista.</p>
-                </div>
-            </div>
-            {% elif lang == 'et' %}
-            <p class="section-label">Kuidas see toimib</p>
-            <h2 class="section-title">Juhiseid pole vaja. Ütle lihtsalt, mida vajad.</h2>
-            <div class="steps">
-                <div class="step">
-                    <div class="step-number">1</div>
-                    <h3>Registreeru</h3>
-                    <p>Kasuta kutsekoodi konto loomiseks. Võtab kaks minutit.</p>
-                </div>
-                <div class="step">
-                    <div class="step-number">2</div>
-                    <h3>Räägi Companionile, mis toimub</h3>
-                    <p>Eesti, inglise või soome keeles. Mis kujul tahes. Üks lause piisab.</p>
-                </div>
-                <div class="step">
-                    <div class="step-number">3</div>
-                    <h3>Töötage see koos läbi</h3>
-                    <p>Samm korraga. Sinu tempos. Ilma hinnanguteta.</p>
-                </div>
-            </div>
-            {% else %}
             <p class="section-label">How it works</p>
             <h2 class="section-title">No instructions needed. Just say what you need.</h2>
             <div class="steps">
@@ -908,60 +819,49 @@
                     <p>One step at a time. At your pace. No judgment.</p>
                 </div>
             </div>
-            {% endif %}
         </div>
     </section>
 
     <!-- ── MODE EXAMPLES ─────────────────────────────────── -->
     <section class="section section-dark">
         <div class="section-inner-wide">
-            <p class="section-label">18 {% if lang == 'fi' %}keskustelutilaa{% elif lang == 'et' %}vestlusrežiimi{% else %}conversation modes{% endif %}</p>
-            {% if lang == 'fi' %}
-            <h2 class="section-title">Sinun ei tarvitse tietää mitä tilaa tarvitset. Sano vain mitä tunnet.</h2>
-            <p style="color:#C8BFA8; margin-bottom: 0;">Companion kuuntelee ja vastaa tavalla, joka sopii hetkeen. Tässä muutamia esimerkkejä siitä, miltä se näyttää.</p>
-            {% elif lang == 'et' %}
-            <h2 class="section-title">Sul pole vaja teada, millist režiimi vajad. Ütle lihtsalt, mida tunned.</h2>
-            <p style="color:#C8BFA8; margin-bottom: 0;">Companion kuulab ja vastab viisil, mis sobib hetke jaoks. Siin on mõned näited sellest, milline see välja näeb.</p>
-            {% else %}
+            <p class="section-label">18 conversation modes</p>
             <h2 class="section-title">You do not need to know what mode you need. Just say what you feel.</h2>
             <p style="color:#C8BFA8; margin-bottom: 0;">Companion listens and responds in the way that fits the moment.
                 Here are some examples of what that looks like.</p>
-            {% endif %}
             <div class="mode-grid">
                 <div class="mode-card">
                     <p class="mode-trigger">I cannot start anything. I have been sitting here for an hour.</p>
-                    <p class="mode-result">Focus Mode — breaks the first step into something small enough to actually do
-                    </p>
+                    <p class="mode-result">Focus Mode. Breaks the first step into something small enough to actually do</p>
                 </div>
                 <div class="mode-card">
                     <p class="mode-trigger">I am overwhelmed and I cannot breathe.</p>
-                    <p class="mode-result">Calm Mode — slows things down, grounds you in the present moment</p>
+                    <p class="mode-result">Calm Mode. Slows things down, grounds you in the present moment</p>
                 </div>
                 <div class="mode-card">
                     <p class="mode-trigger">I keep going in circles with this decision.</p>
-                    <p class="mode-result">Decision Mode — helps you see the options clearly and find your own answer
-                    </p>
+                    <p class="mode-result">Decision Mode. Helps you see the options clearly and find your own answer</p>
                 </div>
                 <div class="mode-card">
                     <p class="mode-trigger">I need to understand this article but nothing is going in.</p>
-                    <p class="mode-result">Study Mode — breaks the content into the smallest useful pieces</p>
+                    <p class="mode-result">Study Mode. Breaks the content into the smallest useful pieces</p>
                 </div>
                 <div class="mode-card">
                     <p class="mode-trigger">I am having a craving and I do not know what to do.</p>
-                    <p class="mode-result">Steady Mode — helps you wait it out. The feeling always passes</p>
+                    <p class="mode-result">Steady Mode. Helps you wait it out. The feeling always passes</p>
                 </div>
                 <div class="mode-card">
                     <p class="mode-trigger">Someone keeps crossing my limits and I do not know how to say stop.</p>
-                    <p class="mode-result">Boundary Mode — helps you name the limit and find the words</p>
+                    <p class="mode-result">Boundary Mode. Helps you name the limit and find the words</p>
                 </div>
             </div>
             <p style="color:#7A7060; font-size:0.85rem; margin-top:1.5rem; text-align:center;">
-                {% if lang == 'fi' %}Nämä ovat 6 kahdeksastatoista tilasta. Täydellinen luettelo:{% elif lang == 'et' %}Need on 6 kaheksateistkümnest režiimist. Täielik nimekiri:{% else %}These are 6 of 18 modes. The full list:{% endif %}
+                These are 6 of 18 modes. The full list:
                 Calm, Mindfulness, Steady, Reality Check, Focus, Planning,
                 Decision, Reflection, Boundary, Daily Companion, Study, Read, Listen, Express, Feedback, Habit and Aim,
                 Relationship, and Help.
                 <br><a href="https://github.com/LiinaSuoniemi/companion_os#readme" target="_blank" rel="noopener"
-                    style="color: var(--color-accent);">{% if lang == 'fi' %}Lue kuvaukset GitHubissa →{% elif lang == 'et' %}Loe kirjeldused GitHubis →{% else %}Read the full description on GitHub →{% endif %}</a>
+                    style="color: var(--color-accent);">Read the full description on GitHub →</a>
             </p>
         </div>
     </section>
@@ -969,62 +869,15 @@
     <!-- ── TRANSPARENCY ───────────────────────────────────── -->
     <section class="section">
         <div class="section-inner">
-            {% if lang == 'fi' %}
-            <p class="section-label">Läpinäkyvyys</p>
-            <h2 class="section-title">Mitä Companion OS kerää. Ja mitä se ei koskaan tee.</h2>
-            <div class="two-col">
-                <div class="transparency-block collects">
-                    <h3>Mitä keräämme — suostumuksellasi</h3>
-                    <ul>
-                        <li>Viestisi, jotta voimme käydä keskustelun</li>
-                        <li>Anonyymiä käyttödataa, jotta ymmärrämme mikä auttaa</li>
-                        <li>Vapaaehtoisia kyselyvastauksia, vaikutuksen mittaamiseksi</li>
-                    </ul>
-                </div>
-                <div class="transparency-block never">
-                    <h3>Mitä emme koskaan tee</h3>
-                    <ul>
-                        <li>Emme koskaan diagnosoi tai kirjoita reseptejä</li>
-                        <li>Emme koskaan jaa tietojasi kolmansille osapuolille</li>
-                        <li>Emme koskaan tallenna dataa ilman nimenomaista suostumustasi</li>
-                        <li>Emme koskaan teeskentele olevamme ihminen</li>
-                        <li>Emme koskaan käytä tietojasi tekoälymallien kouluttamiseen</li>
-                    </ul>
-                </div>
-            </div>
-            {% elif lang == 'et' %}
-            <p class="section-label">Läbipaistvus</p>
-            <h2 class="section-title">Mida Companion OS kogub. Ja mida see kunagi ei tee.</h2>
-            <div class="two-col">
-                <div class="transparency-block collects">
-                    <h3>Mida kogume — sinu nõusolekul</h3>
-                    <ul>
-                        <li>Sinu sõnumid, et saada vestlust pidada</li>
-                        <li>Anonüümseid kasutusandmeid, et mõista, mis aitab</li>
-                        <li>Vabatahtlikke küsitlusvastuseid, tegeliku mõju mõõtmiseks</li>
-                    </ul>
-                </div>
-                <div class="transparency-block never">
-                    <h3>Mida me kunagi ei tee</h3>
-                    <ul>
-                        <li>Me ei diagnoosi ega kirjuta kunagi retsepte</li>
-                        <li>Me ei jaga sinu andmeid kunagi kolmandate osapooltega</li>
-                        <li>Me ei salvesta andmeid kunagi ilma sinu selgesõnalise nõusolekuta</li>
-                        <li>Me ei tee kunagi nägu, et oleme inimene</li>
-                        <li>Me ei kasuta sinu andmeid kunagi tehisintellektimudelite treenimiseks</li>
-                    </ul>
-                </div>
-            </div>
-            {% else %}
             <p class="section-label">Transparency</p>
             <h2 class="section-title">What Companion OS collects. And what it never does.</h2>
             <div class="two-col">
                 <div class="transparency-block collects">
-                    <h3>What we collect — with your consent</h3>
+                    <h3>What we collect. With your consent.</h3>
                     <ul>
                         <li>Your messages, to have a conversation</li>
                         <li>Anonymous usage data, to understand what helps</li>
-                        <li>Optional survey responses, to measure real impact</li>
+                        <li>Survey responses, to measure real impact</li>
                     </ul>
                 </div>
                 <div class="transparency-block never">
@@ -1033,18 +886,13 @@
                         <li>Never diagnose or prescribe anything</li>
                         <li>Never share your data with third parties</li>
                         <li>Never store data without your explicit consent</li>
-                        <li>Never pretend to be human</li>
                         <li>Never use your data to train AI models</li>
                     </ul>
                 </div>
             </div>
-            {% endif %}
             <div class="gold-divider"></div>
-            <p style="font-size:0.9rem; color: var(--color-text-muted);">
-                {% if lang == 'fi' %}Haluatko tarkistaa itse? Koodi on avointa lähdekoodia.
-                <a href="https://github.com/LiinaSuoniemi/companion_os#readme" target="_blank" rel="noopener">Lue README GitHubissa →</a>{% elif lang == 'et' %}Tahad ise kontrollida? Kood on avatud lähtekoodiga.
-                <a href="https://github.com/LiinaSuoniemi/companion_os#readme" target="_blank" rel="noopener">Loe README GitHubis →</a>{% else %}Want to verify this yourself? The code is open source.
-                <a href="https://github.com/LiinaSuoniemi/companion_os#readme" target="_blank" rel="noopener">Read the README on GitHub →</a>{% endif %}
+            <p style="font-size:0.9rem; color: var(--color-text-muted);">Want to verify this yourself? The code is open source.
+                <a href="https://github.com/LiinaSuoniemi/companion_os#readme" target="_blank" rel="noopener">Read the README on GitHub →</a>
             </p>
         </div>
     </section>
@@ -1052,86 +900,27 @@
     <!-- ── IMPACT SURVEY ──────────────────────────────────── -->
     <section class="section section-alt">
         <div class="section-inner">
-            {% if lang == 'fi' %}
-            <p class="section-label">Vaikutuskysely</p>
-            <h2 class="section-title">Neljä kysymystä. Alussa ja neljän viikon jälkeen.</h2>
-            <div class="survey-box">
-                <p style="color: var(--color-text-muted);">Pilotin alussa Companion OS kysyy sinulta neljä lyhyttä kysymystä. Esimerkiksi: <em>Onko sinulla jotain kokeiltavaa silloin kun tuntuu ylivoimaiselta?</em> Vie kaksi minuuttia. Samat neljä kysymystä esitetään uudelleen neljän viikon kohdalla.</p>
-                <p style="color: var(--color-text-muted);">Nämä kysymykset eivät ole sinun arvostelemisesta. Ne ovat siitä, onko työkalu oikeasti hyödyksi arjessa — ei vain siitä, tuntuuko se mukavalta käyttää.</p>
-                <p style="color: var(--color-text-muted); margin-bottom: 0;">Vastauksesi ovat anonyymejä ja menevät suoraan Companion OS:n seuraavan version muokkaamiseen. Kysely on vapaaehtoinen. Voit ohittaa sen halutessasi.</p>
-            </div>
-            {% elif lang == 'et' %}
-            <p class="section-label">Mõjuküsitlus</p>
-            <h2 class="section-title">Neli küsimust. Alguses ja nelja nädala pärast.</h2>
-            <div class="survey-box">
-                <p style="color: var(--color-text-muted);">Pilootprojekti alguses küsib Companion OS sinult neli lühikest küsimust. Näiteks: <em>Kas sul on midagi proovida, kui tunned end ülekoormatuna?</em> Võtab kaks minutit. Samad neli küsimust ilmuvad uuesti nelja nädala pärast.</p>
-                <p style="color: var(--color-text-muted);">Need küsimused ei hinda sind. Need on selleks, et mõista, kas tööriist teeb igapäevaelus tegelikult vahet — mitte ainult seda, kas see tundub mõnus kasutada.</p>
-                <p style="color: var(--color-text-muted); margin-bottom: 0;">Sinu vastused on anonüümsed ja lähevad otse Companion OS järgmise versiooni kujundamisse. Küsitlus on vabatahtlik. Saad selle vahele jätta, kui eelistad.</p>
-            </div>
-            {% else %}
             <p class="section-label">Impact survey</p>
             <h2 class="section-title">Four questions. At the start and after four weeks.</h2>
             <div class="survey-box">
-                <p style="color: var(--color-text-muted);">At the beginning of the pilot, Companion OS will ask you four
-                    short questions. Things like: <em>Do you have something to try when you feel overwhelmed?</em> It
-                    takes two minutes. The same four questions appear again at the four-week mark.</p>
                 <p style="color: var(--color-text-muted);">These questions are not about scoring you. They are about
-                    understanding whether the tool actually makes a difference in daily life — not just whether it feels
+                    understanding whether the tool actually makes a difference in daily life. Not just whether it feels
                     nice to use.</p>
-                <p style="color: var(--color-text-muted); margin-bottom: 0;">Your answers are anonymous and go directly
-                    into shaping the next version of Companion OS. The survey is optional. You can skip it if you
-                    prefer.</p>
+                <p style="color: var(--color-text-muted);">Each question is rated 1 to 5, from Rarely to Almost always.</p>
+                <ol class="survey-questions">
+                    <li data-n="1">In the past week, I felt able to handle difficult moments in my day.</li>
+                    <li data-n="2">I notice when my stress or emotions are building up before they become overwhelming.</li>
+                    <li data-n="3">When I feel stuck or overwhelmed, I have something I can try that helps.</li>
+                    <li data-n="4">I have been able to get through my daily tasks and responsibilities.</li>
+                </ol>
+                <p style="color: var(--color-text-muted); margin-top: 1.25rem; margin-bottom: 0;">The same four questions appear again at the four-week mark, with one more added: <em>Overall, I feel more steady and grounded in my daily life than I did a month ago.</em> Your answers are anonymous and go directly into shaping the next version of Companion OS.</p>
             </div>
-            {% endif %}
         </div>
     </section>
 
     <!-- ── PILOT DETAILS ──────────────────────────────────── -->
     <section class="section">
         <div class="section-inner">
-            {% if lang == 'fi' %}
-            <p class="section-label">Pilotti</p>
-            <h2 class="section-title">Neljä viikkoa. Pieni ryhmä. Aito keskustelu lopussa.</h2>
-            <div class="pilot-detail-grid">
-                <div class="pilot-detail">
-                    <h3>Kesto</h3>
-                    <p>Neljä viikkoa käyttöoikeutta. Yksi viikko lisäaikaa sen jälkeen. Ei kiirettä.</p>
-                </div>
-                <div class="pilot-detail">
-                    <h3>Ryhmän koko</h3>
-                    <p>Pieni, koska olen yksi ihminen. Haluan lukea jokaisen viestin, seurata jokaista testaajaa neljän viikon ajan ja käydä aidon keskustelun lopussa. Jos pilotti on täynnä, voit silti ottaa yhteyttä. Kerron mitä on mahdollista.</p>
-                </div>
-                <div class="pilot-detail">
-                    <h3>Mitä saat</h3>
-                    <p>Palautteesi muokkaa mitä tulee seuraavaksi.</p>
-                </div>
-                <div class="pilot-detail">
-                    <h3>Lopussa</h3>
-                    <p>Otan yhteyttä henkilökohtaisesti. Haluan kuulla mikä toimi, mikä ei, ja mitä olisit toivonut Companionin tietävän sinusta alusta alkaen.</p>
-                </div>
-            </div>
-            {% elif lang == 'et' %}
-            <p class="section-label">Piloot</p>
-            <h2 class="section-title">Neli nädalat. Väike grupp. Päris vestlus lõpus.</h2>
-            <div class="pilot-detail-grid">
-                <div class="pilot-detail">
-                    <h3>Kestus</h3>
-                    <p>Neli nädalat juurdepääsu. Üks nädal lisaaega pärast seda. Kiirustamata.</p>
-                </div>
-                <div class="pilot-detail">
-                    <h3>Grupi suurus</h3>
-                    <p>Väike, sest olen üks inimene. Tahan lugeda iga sõnumit, suhelda iga testijaga nelja nädala jooksul ja pidada lõpus päris vestlust. Kui piloot on täis, saad ikkagi ühendust võtta. Annan teada, mis on võimalik.</p>
-                </div>
-                <div class="pilot-detail">
-                    <h3>Mida saad</h3>
-                    <p>Sinu tagasiside kujundab seda, mis tuleb edasi.</p>
-                </div>
-                <div class="pilot-detail">
-                    <h3>Lõpus</h3>
-                    <p>Võtan isiklikult ühendust. Tahan kuulda, mis töötas, mis ei töötanud, ja mida oleksid soovinud, et Companion oleks sinust algusest peale teadnud.</p>
-                </div>
-            </div>
-            {% else %}
             <p class="section-label">The pilot</p>
             <h2 class="section-title">Four weeks. A small group. A real conversation at the end.</h2>
             <div class="pilot-detail-grid">
@@ -1153,46 +942,25 @@
                         Companion had known about you from the start.</p>
                 </div>
             </div>
-            {% endif %}
         </div>
     </section>
 
     <!-- ── FOR ORGANIZATIONS ────────────────────────────────── -->
     <section class="section section-alt" id="organizations">
         <div class="section-inner">
-            <p class="section-label">
-                {% if lang == 'fi' %}Organisaatioille{% elif lang == 'et' %}Organisatsioonidele{% else %}For organizations{% endif %}
-            </p>
-            <h2 class="section-title">
-                {% if lang == 'fi' %}Teillä on jo asiakkaita, jotka tarvitsevat tätä.{% elif lang == 'et' %}Teil on juba kliendid, kes vajavad seda.{% else %}You already work with people who need this.{% endif %}
-            </h2>
-            <p style="color: var(--color-text-muted);">
-                {% if lang == 'fi' %}Jos työskentelette haavoittuvassa asemassa olevien ihmisten kanssa — sosiaali- ja terveyspalveluissa, kuntoutuksessa, kouluissa tai vankilajärjestelmässä — Companion OS voi olla osa tarjoamaanne tukea. Organisaatio maksaa paikoista. Asiakkaanne käyttävät sitä ilmaiseksi.{% elif lang == 'et' %}Kui töötate haavatavate inimestega — sotsiaalteenustes, rehabilitatsioonis, koolides või kinnipidamisasutustes — saab Companion OS olla osa sellest toest, mida pakute. Organisatsioon maksab kohtade eest. Teie kliendid kasutavad seda tasuta.{% else %}If you work with people in vulnerable situations — in social services, rehabilitation, mental health support, education, or corrections — Companion OS can be part of what you offer them. Organizations pay per seat. The people you serve get free access.{% endif %}
-            </p>
+            <p class="section-label">Partner with us</p>
+            <h2 class="section-title">You already work with people who need this.</h2>
+            <p style="color: var(--color-text-muted);">If you work with people in vulnerable situations — in social services, rehabilitation, mental health support, education, or corrections — Companion OS can be part of what you offer them. Organizations pay per seat. The people you serve get free access.</p>
             <ul class="for-who-list" style="margin-top: 1.25rem;">
-                {% if lang == 'fi' %}
-                <li>Sosiaali- ja terveydenhuollon organisaatiot</li>
-                <li>Kuntoutuskeskukset ja päihdekuntoutusohjelmat</li>
-                <li>Koulut ja nuorisopalvelut</li>
-                <li>Veteraanien tukiorganisaatiot</li>
-                <li>Vankilat ja yhteiskuntaan sopeutumisohjelmat</li>
-                {% elif lang == 'et' %}
-                <li>Sotsiaal- ja tervishoiuorganisatsioonid</li>
-                <li>Rehabilitatsioonikeskused ja taastumisprogrammid</li>
-                <li>Koolid ja noorteorganisatsioonid</li>
-                <li>Veteranide tugiteenused</li>
-                <li>Kinnipidamisasutused ja ühiskonda tagasipöördumise programmid</li>
-                {% else %}
                 <li>Social and health care organizations</li>
                 <li>Rehabilitation centers and recovery programs</li>
                 <li>Schools and youth services</li>
                 <li>Veteran support organizations</li>
                 <li>Correctional facilities and reintegration programs</li>
-                {% endif %}
             </ul>
             <div class="gold-divider"></div>
             <a href="{% url 'accounts:partnership' %}" class="btn-primary-warm" style="display:inline-block; margin-top: 0.5rem; text-decoration:none;">
-                {% if lang == 'fi' %}Tutustu kumppanuusmalliin →{% elif lang == 'et' %}Tutvu partnerlusmudeliga →{% else %}Explore the partnership model →{% endif %}
+                Partner with us →
             </a>
         </div>
     </section>
@@ -1200,32 +968,14 @@
     <!-- ── APPLICATION FORM ───────────────────────────────── -->
     <section class="section section-dark" id="apply">
         <div class="section-inner" style="text-align:center;">
-            {% if lang == 'fi' %}
-            <p class="section-label">Pyydä käyttöoikeutta</p>
-            <h2 class="section-title">Kerro vähän itsestäsi.</h2>
-            <p>Ei pitkiä lomakkeita. Vain nimesi, sähköpostisi ja mikä toi sinut tänne. Luen jokaisen viestin itse.</p>
-            {% elif lang == 'et' %}
-            <p class="section-label">Taotle juurdepääsu</p>
-            <h2 class="section-title">Räägi mulle natuke enda kohta.</h2>
-            <p>Pikki ankeete pole. Ainult sinu nimi, e-post ja mis tõi sind siia. Loen iga sõnumi ise läbi.</p>
-            {% else %}
             <p class="section-label">Request access</p>
             <h2 class="section-title">Tell me a little about you.</h2>
             <p>No long forms. Just your name, email, and what brings you here. I read every message myself.</p>
-            {% endif %}
 
             {% if success %}
             <div class="success-box">
-                {% if lang == 'fi' %}
-                <h3>Selvä. Kiitos yhteydenotosta.</h3>
-                <p>Luen jokaisen viestin itse, joten vastaamiseen saattaa mennä muutama päivä. Kun vastaan, saat kutsukoodisi ja selkeät ohjeet sisäänkirjautumiseen.</p>
-                {% elif lang == 'et' %}
-                <h3>Selge. Tänan, et võtsid ühendust.</h3>
-                <p>Loen iga sõnumi ise, seega võib vastamine võtta mõne päeva. Kui vastan, saad oma kutsekoodi ja selged juhised sisselogimiseks.</p>
-                {% else %}
                 <h3>Got it. Thanks for reaching out.</h3>
                 <p>I read every message myself, so it may take a few days to reply. When I do, you will get your invite code and clear instructions for getting in.</p>
-                {% endif %}
             </div>
             {% else %}
             <div class="apply-card">
@@ -1235,43 +985,34 @@
                     <div class="error-msg">{{ error }}</div>
                     {% endif %}
                     <div class="mb-3">
-                        <label for="name" class="form-label small fw-medium">
-                            {% if lang == 'fi' %}Nimesi{% elif lang == 'et' %}Sinu nimi{% else %}Your name{% endif %}
-                        </label>
+                        <label for="name" class="form-label small fw-medium">Your name</label>
                         <input type="text" id="name" name="name" class="form-control"
-                            placeholder="{% if lang == 'fi' %}Etunimi riittää{% elif lang == 'et' %}Eesnimi sobib{% else %}First name is fine{% endif %}"
-                            required>
+                            placeholder="First name is fine" required>
                     </div>
                     <div class="mb-3">
-                        <label for="email" class="form-label small fw-medium">
-                            {% if lang == 'fi' %}Sähköpostiosoite{% elif lang == 'et' %}E-posti aadress{% else %}Email address{% endif %}
-                        </label>
+                        <label for="email" class="form-label small fw-medium">Email address</label>
                         <input type="email" id="email" name="email" class="form-control"
-                            placeholder="{% if lang == 'fi' %}Missä voin tavoittaa sinut{% elif lang == 'et' %}Kus saan sinuga ühendust võtta{% else %}Where I can reach you{% endif %}"
-                            required>
+                            placeholder="Where I can reach you" required>
                     </div>
                     <div class="mb-3">
-                        <label for="what_brings_you" class="form-label small fw-medium">
-                            {% if lang == 'fi' %}Mikä toi sinut tänne?{% elif lang == 'et' %}Mis tõi sind siia?{% else %}What brings you here?{% endif %}
-                        </label>
+                        <label for="what_brings_you" class="form-label small fw-medium">What brings you here?</label>
                         <textarea id="what_brings_you" name="what_brings_you" class="form-control"
-                            placeholder="{% if lang == 'fi' %}Kerro mikä sai sinut ottamaan yhteyttä. Muutama lause riittää.{% elif lang == 'et' %}Räägi, mis pani sind ühendust võtma. Mõni lause piisab.{% else %}Tell me what made you reach out. A few sentences is enough.{% endif %}"
+                            placeholder="Tell me what made you reach out. A few sentences is enough."
                             required></textarea>
                     </div>
                     <div class="mt-4">
                         <button type="submit" class="btn-apply"
                             style="font-size: 1rem; padding: 0.75rem 2rem; width: 100%;">
-                            {% if lang == 'fi' %}Pyydä käyttöoikeutta{% elif lang == 'et' %}Taotle juurdepääsu{% else %}Request access{% endif %}
+                            Request access
                         </button>
                     </div>
                     <p class="form-note">
-                        {% if lang == 'fi' %}Lähettämällä hyväksyt <a href="{% url 'privacy' %}">tietosuojaselosteen</a>. Tietojasi ei koskaan jaeta kolmansille osapuolille.{% elif lang == 'et' %}Esitades nõustud <a href="{% url 'privacy' %}">privaatsuspoliitikaga</a>. Sinu andmeid ei jagata kunagi kolmandate osapooltega.{% else %}By submitting you agree to the <a href="{% url 'privacy' %}">Privacy Policy</a>. Your information is never shared with third parties.{% endif %}
+                        By submitting you agree to the <a href="{% url 'privacy' %}">Privacy Notice</a>. Your information is never shared with third parties.
                     </p>
                 </form>
             </div>
             {% endif %}
 
-            <!-- Back to top — inside the dark apply section, after the apply-card, before the footer -->
             <div class="back-to-top-row" style="text-align: center; padding: 3rem 1rem 1.5rem;">
                 <a href="#" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;"
                     style="display: inline-block; padding: 0.5rem 1.5rem; font-size: 0.85rem; font-weight: 500; letter-spacing: 0.04em; color: #C9952A; text-decoration: none; background-color: transparent; border: 1.5px solid #C9952A; border-radius: 8px; transition: box-shadow 0.25s ease; cursor: pointer;"
@@ -1282,14 +1023,12 @@
     </section>
 
     <!-- ── FOOTER ─────────────────────────────────────────── -->
-    <!-- All layout lives in the CSS above. No inline styles — they were fighting
-         the media query and breaking the mobile stack. -->
     <footer class="landing-footer">
         <div class="footer-cols">
             <div class="footer-col">
                 <h4>Help</h4>
                 <p>
-                    <a href="{% url 'privacy' %}">Privacy</a>
+                    <a href="{% url 'privacy' %}">Privacy Notice</a>
                 </p>
             </div>
             <div class="footer-col">
@@ -1324,14 +1063,10 @@
     <div id="cookie-banner" style="display:none; position:fixed; bottom:0; left:0; right:0; background:#1A1510; color:#C8BFA8; padding:0.85rem 1.5rem; z-index:9999; border-top:1px solid #3A3028;">
         <div style="max-width:840px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; gap:1rem; flex-wrap:wrap;">
             <p style="margin:0; font-size:0.82rem; line-height:1.5;">
-                {% if lang == 'fi' %}Käytämme vain välttämättömiä evästeitä — istunnon hallintaan ja tietoturvaan. Ei analytiikkaa, ei seurantaa.{% elif lang == 'et' %}Kasutame ainult vajalikke küpsiseid — seansi haldamiseks ja turvalisuseks. Analüütikat ega jälgimist ei toimu.{% else %}This site uses essential cookies only — for your session and security. No analytics, no tracking.{% endif %}
-                <a href="{% url 'privacy' %}" style="color:#C9952A; text-decoration:underline;">
-                    {% if lang == 'fi' %}Tietosuojaseloste{% elif lang == 'et' %}Privaatsuspoliitika{% else %}Privacy Policy{% endif %}
-                </a>
+                This site uses essential cookies only. For your session and security. No analytics, no tracking.
+                <a href="{% url 'privacy' %}" style="color:#C9952A; text-decoration:underline;">Privacy Notice</a>
             </p>
-            <button id="cookie-ok" style="background:#C9952A; border:none; color:#1A1A1A; padding:0.4rem 1.25rem; border-radius:8px; font-size:0.82rem; font-weight:500; cursor:pointer; white-space:nowrap; flex-shrink:0;">
-                {% if lang == 'fi' %}Selvä{% elif lang == 'et' %}Selge{% else %}Got it{% endif %}
-            </button>
+            <button id="cookie-ok" style="background:#C9952A; border:none; color:#1A1A1A; padding:0.4rem 1.25rem; border-radius:8px; font-size:0.82rem; font-weight:500; cursor:pointer; white-space:nowrap; flex-shrink:0;">Got it</button>
         </div>
     </div>
     <script>
