@@ -772,7 +772,10 @@
         <p>Companion OS™ is an AI tool that teaches coping skills, helps you through difficult moments, and keeps you
             company. It is not therapy. It is not a diagnosis. It is something to try when you need a place to start.
         </p>
-        <a href="#apply" class="btn-apply" style="font-size:1rem; padding: 0.75rem 2rem;">Request access</a>
+        <a href="#apply"
+            style="display: inline-block; padding: 0.75rem 2rem; font-size: 1rem; font-weight: 500; letter-spacing: 0.04em; color: #C9952A; text-decoration: none; background-color: transparent; border: 1.5px solid #C9952A; border-radius: 8px; transition: box-shadow 0.25s ease;"
+            onmouseover="this.style.boxShadow='0 0 14px rgba(201,149,42,0.75), 0 0 28px rgba(201,149,42,0.5)'"
+            onmouseout="this.style.boxShadow='none'">Request access</a>
     </section>
 
     <!-- ── WHO THIS IS FOR ───────────────────────────────── -->
@@ -998,12 +1001,6 @@
             </div>
             {% endif %}
 
-            <div class="back-to-top-row" style="text-align: center; padding: 3rem 1rem 1.5rem;">
-                <a href="#" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;"
-                    style="display: inline-block; padding: 0.5rem 1.5rem; font-size: 0.85rem; font-weight: 500; letter-spacing: 0.04em; color: #C9952A; text-decoration: none; background-color: transparent; border: 1.5px solid #C9952A; border-radius: 8px; transition: box-shadow 0.25s ease; cursor: pointer;"
-                    onmouseover="this.style.boxShadow='0 0 14px rgba(201,149,42,0.75), 0 0 28px rgba(201,149,42,0.5)'"
-                    onmouseout="this.style.boxShadow='none'">↑ Back to top</a>
-            </div>
         </div>
     </section>
 
@@ -1023,9 +1020,15 @@
             </ul>
             <p style="font-size:0.9rem; color: var(--color-text-muted); margin-top: 1.25rem;">If your context isn't on this list and the pattern still fits, get in touch. The architecture and safety approach transfer. The rest is built for your context.</p>
             <div class="gold-divider"></div>
-            <a href="{% url 'accounts:partnership' %}" class="btn-primary-warm" style="display:inline-block; margin-top: 0.5rem; text-decoration:none;">
-                Partner with us →
-            </a>
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-top: 0.5rem;">
+                <a href="{% url 'accounts:partnership' %}" class="btn-primary-warm" style="display:inline-block; text-decoration:none;">
+                    Partner with us →
+                </a>
+                <a href="#" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;"
+                    style="display: inline-block; padding: 0.5rem 1.5rem; font-size: 0.85rem; font-weight: 500; letter-spacing: 0.04em; color: #C9952A; text-decoration: none; background-color: transparent; border: 1.5px solid #C9952A; border-radius: 8px; transition: box-shadow 0.25s ease; cursor: pointer;"
+                    onmouseover="this.style.boxShadow='0 0 14px rgba(201,149,42,0.75), 0 0 28px rgba(201,149,42,0.5)'"
+                    onmouseout="this.style.boxShadow='none'">↑ Back to top</a>
+            </div>
         </div>
     </section>
 
