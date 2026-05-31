@@ -69,7 +69,7 @@ The AI never pastes a hotline number and goes quiet. When someone says something
 
 Companion OS runs on Claude. The choice is deliberate.
 
-Safety in Companion OS comes from several layers: the user interface (crisis banner, kill switch, account deletion), the data layer (encryption, GDPR compliance), the prompt layer (mode behaviour, refusals, warmth in crisis), and the model itself.
+Safety in Companion OS comes from several layers: the user interface (crisis banner, kill switch, account deletion), the data layer (encryption, GDPR compliance), the input layer (a code-level prompt-injection check before any message reaches the model), the prompt layer (mode behaviour, refusals, warmth in crisis), output sanitisation (responses are filtered before they reach the user), and the model itself.
 
 The prompts assume a model capable enough to follow nuanced safety guidance under pressure. Early testing on smaller open models (4 billion parameters) showed significant safety degradation. The prompts read fine, but the model did not actually follow them when it mattered.
 
@@ -91,8 +91,9 @@ Live as of May 2026:
 - Explicit consent under GDPR Article 9, separated from optional usage tracking
 - Optional impact survey at signup and after 4 weeks
 - Account deletion with full database removal (GDPR Article 17)
+- Automated tests for the safety-critical logic (mode and injection detection), run on every push via GitHub Actions
 
-Currently in private pilot preparation, opening this month. Not yet open to the public. Invite-only access.
+In an invite-only pilot since May 2026, not open to the public.
 
 ## Built by
 
