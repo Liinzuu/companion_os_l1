@@ -1,0 +1,33 @@
+# GitHub Actions CI — runs the pytest suite automatically on every push and PR.
+# This runs on GitHub's servers, not on the production app. It does not deploy
+# and does not touch the live site, the database, or users. It only runs the
+# tests and reports a green (passed) or red (failed) check on the commit.
+
+name: tests
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  pytest:
+    runs-on: ubuntu-latest
+    steps:
+      # 1. Get the code onto the CI machine
+      - uses: actions/checkout@v4
+
+      # 2. Install Python (match the version used locally)
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      # 3. Install the test runner. The current tests target pure functions
+      #    (detect_mode, detect_injection) so pytest alone is enough. When the
+      #    suite grows to need Django/DB, install backend/requirements.txt here.
+      - name: Install pytest
+        run: python -m pip install --upgrade pip pytest
+
+      # 4. Run the suite from the backend/ folder (python -m puts backend on the path)
+      - name: Run tests
+        working-directory: backend
+        run: python -m pytest -v
